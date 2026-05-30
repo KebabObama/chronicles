@@ -1,0 +1,32 @@
+{
+  "files.exclude": {
+    "**/AGENTS.md": true,
+    "**/CLAUDE.md": true,
+    "**/.git": true,
+    "**/.next": true,
+    "**/node_modules/": true,
+    "**/next-env.d.ts": true,
+    "**/bun.lock": true,
+    "**/tsconfig.tsbuildinfo": true,
+    "**/components.json": true,
+    "**/.gitkeep": true
+  },
+  "editor.defaultFormatter": "biomejs.biome",
+  "biome.enabled": true,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.ts": "typescript",
+    "*.tsx": "typescriptreact",
+    "*.test.ts": "typescript",
+    "*.test.tsx": "typescriptreact"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+}
