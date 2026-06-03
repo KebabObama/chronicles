@@ -12,6 +12,7 @@
     "**/.gitkeep": true
   },
   "editor.defaultFormatter": "biomejs.biome",
+  "js/ts.experimental.useTsgo": true,
   "biome.enabled": true,
   "files.associations": {
     "*.css": "tailwindcss",

@@ -1,5 +1,6 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import { FaX } from "react-icons/fa6";
+import { cn, type TriggerElement } from "@/lib/utils";
 
 export type DialogContext = {
   open: boolean;
@@ -12,8 +13,6 @@ export type RootProps = {
   onChange?: (open: boolean) => void;
   children: React.ReactNode;
 };
-
-export type Trigger = React.ReactElement<React.ComponentPropsWithoutRef<"button">>;
 
 export const dialogContext = React.createContext<DialogContext>({} as DialogContext);
 
@@ -35,7 +34,7 @@ export const Root = ({ defaultOpen = false, open: controlledOpen, onChange, chil
   return <dialogContext.Provider value={{ open, setOpen }}>{children}</dialogContext.Provider>;
 };
 
-const Trigger = ({ children }: { children: Trigger }) => {
+const Trigger = ({ children }: { children: TriggerElement }) => {
   const { setOpen } = React.useContext(dialogContext);
   const child = React.Children.only(children);
 
@@ -47,7 +46,15 @@ const Trigger = ({ children }: { children: Trigger }) => {
   });
 };
 
-const Content = ({ children, className, close = true }: { children: React.ReactNode; className?: string; close?: boolean }) => {
+const Content = ({
+  children,
+  className,
+  close = true,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+  close?: boolean;
+}) => {
   const { open, setOpen } = React.useContext(dialogContext);
   const dialogRef = React.useRef<HTMLDialogElement>(null);
 
@@ -68,12 +75,12 @@ const Content = ({ children, className, close = true }: { children: React.ReactN
       onClick={(e) => {
         if (e.target === dialogRef.current) setOpen(false);
       }}
-      className="bg-transparent border-none p-0 max-w-none max-h-none overflow-visible backdrop:bg-black/80 backdrop:backdrop-blur-sm open:animate-in open:fade-in-0">
+      className="bg-transparent border-none p-0 max-w-none max-h-none overflow-visible backdrop:bg-muted/60 backdrop:backdrop-blur-sm open:animate-in open:fade-in-0">
       <div
         role={"none"}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "fixed inset-0 z-50 m-auto grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg rounded-lg h-fit",
+          "fixed inset-0 z-50 m-auto grid w-full max-w-lg gap-4 border rounded-2xl text-foreground bg-card p-6 shadow-lg h-fit",
           "animate-in fade-in-0 zoom-in-95 duration-200",
           className,
         )}>
@@ -82,8 +89,8 @@ const Content = ({ children, className, close = true }: { children: React.ReactN
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none">
-            ✕
+            className="absolute right-5 top-5 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none">
+            <FaX />
           </button>
         )}
       </div>

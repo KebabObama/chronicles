@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
-import { ThemeProvider } from "next-themes";
-import { Sidebar, SidebarProvider } from "@/layout/sidebar";
+import { Navbar } from "@/components/layout/navbar";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,21 +15,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dragons notebook",
-  description: "Rules and notes for specialized turned based tabletop roleplaying game",
+  title: "Lich's chronicle",
+  description: "Rules and notes for my own turned based tabletop roleplaying game",
   creator: "Lukáš Pražák",
 };
 
 export default ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <html lang="cs" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased font-sans`}>
-      <body className="h-dvh w-dvw relative flex flex-row bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <SidebarProvider>
-            <Sidebar />
-            <main className={"w-full"}>{children}</main>
-          </SidebarProvider>
-        </ThemeProvider>
+    <html
+      lang="cs"
+      suppressHydrationWarning
+      className={cn("h-full antialiased font-sans", geistSans.variable, geistMono.variable)}>
+      <body className="relative bg-background text-foreground">
+        <Navbar />
+        <main className="flex flex-col gap-4 items-center p-4">{children}</main>
       </body>
     </html>
   );
