@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog } from "@/layout/dialog";
+import { Dialog } from "@/components/ui/dialog";
 import type { TriggerElement } from "@/lib/utils";
 
 export const Search = ({ children }: { children: TriggerElement }) => {
