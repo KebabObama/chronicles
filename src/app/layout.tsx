@@ -23,12 +23,13 @@ export const metadata: Metadata = {
 export default ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <html
-      lang="cs"
+      lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={cn("h-full antialiased font-sans", geistSans.variable, geistMono.variable)}>
       <body className="relative bg-background text-foreground">
         <Navbar />
-        <main className="flex flex-col gap-4 items-center p-4">{children}</main>
+        {children}
       </body>
     </html>
   );

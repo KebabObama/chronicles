@@ -12,11 +12,11 @@ type LinkedUrl = {
 };
 
 const LINKS: LinkedUrl[] = [
-  { href: "/", label: "Domů", Icon: FaHome },
-  { href: "/rules", label: "Pravidla", Icon: FaBalanceScale },
-  { href: "/classes", label: "Postavy", Icon: FaPeopleGroup },
-  { href: "/items", label: "Předměty", Icon: GiSwitchWeapon },
-  { href: "/spells", label: "Schopnosti", Icon: GiMagicSwirl },
+  { href: "/", label: "Home", Icon: FaHome },
+  { href: "/rules", label: "Rules", Icon: FaBalanceScale },
+  { href: "/classes", label: "Characters", Icon: FaPeopleGroup },
+  { href: "/items", label: "Items", Icon: GiSwitchWeapon },
+  { href: "/spells", label: "Abilities", Icon: GiMagicSwirl },
 ];
 
 export const Links = () => {

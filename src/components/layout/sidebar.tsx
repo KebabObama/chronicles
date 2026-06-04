@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const CLOSING_DISTANCE = 50;
 
 export const Sidebar = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   let touchStartX = 0;
 
