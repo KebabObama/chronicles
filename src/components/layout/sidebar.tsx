@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { Links } from "@/components/layout/links";
 import { cn } from "@/lib/utils";
@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const CLOSING_DISTANCE = 50;
 
 export const Sidebar = () => {
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   let touchStartX = 0;
 

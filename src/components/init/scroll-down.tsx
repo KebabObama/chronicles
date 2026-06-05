@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import { useEffect, useState } from "react";
 import { IoChevronDownCircleOutline } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 
 export const ScrollDown = () => {
-  const [isVisible, setIsVisible] = React.useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => setIsVisible(window.scrollY < 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);

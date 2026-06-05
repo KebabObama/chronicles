@@ -1,4 +1,4 @@
-import React from "react";
+import { Children, cloneElement, createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { FaX } from "react-icons/fa6";
 import { cn, type TriggerElement } from "@/lib/utils";
 
@@ -14,15 +14,15 @@ export type RootProps = {
   children: React.ReactNode;
 };
 
-export const dialogContext = React.createContext<DialogContext>({} as DialogContext);
+export const dialogContext = createContext<DialogContext>({} as DialogContext);
 
 export const Root = ({ defaultOpen = false, open: controlledOpen, onChange, children }: RootProps) => {
-  const [internalOpen, setInternalOpen] = React.useState<boolean>(defaultOpen);
+  const [internalOpen, setInternalOpen] = useState<boolean>(defaultOpen);
 
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
 
-  const setOpen = React.useCallback(
+  const setOpen = useCallback(
     (value: React.SetStateAction<boolean>) => {
       const nextState = value instanceof Function ? value(open) : value;
       if (!isControlled) setInternalOpen(nextState);
@@ -35,10 +35,10 @@ export const Root = ({ defaultOpen = false, open: controlledOpen, onChange, chil
 };
 
 const Trigger = ({ children }: { children: TriggerElement }) => {
-  const { setOpen } = React.useContext(dialogContext);
-  const child = React.Children.only(children);
+  const { setOpen } = useContext(dialogContext);
+  const child = Children.only(children);
 
-  return React.cloneElement(child, {
+  return cloneElement(child, {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
       child.props.onClick?.(e);
       setOpen((p) => !p);
@@ -55,10 +55,10 @@ const Content = ({
   className?: string;
   close?: boolean;
 }) => {
-  const { open, setOpen } = React.useContext(dialogContext);
-  const dialogRef = React.useRef<HTMLDialogElement>(null);
+  const { open, setOpen } = useContext(dialogContext);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
     if (open && !dialog.open) {
@@ -99,7 +99,7 @@ const Content = ({
 };
 
 export const useDialog = () => {
-  const context = React.useContext(dialogContext);
+  const context = useContext(dialogContext);
   if (!context) throw new Error("useDialog must be used within a Dialog Provider");
   return context;
 };

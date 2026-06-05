@@ -1,6 +1,16 @@
 "use client";
 
-import React from "react";
+import {
+  Children,
+  cloneElement,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import { cn, type TriggerElement } from "@/lib/utils";
 
@@ -32,7 +42,7 @@ type Position = {
   left: number;
 };
 
-export const popoverContext = React.createContext<PopoverContext>({} as PopoverContext);
+export const popoverContext = createContext<PopoverContext>({} as PopoverContext);
 
 export const Root = ({
   defaultOpen = false,
@@ -43,14 +53,14 @@ export const Root = ({
   sideOffset = 12,
   children,
 }: RootProps) => {
-  const [internalOpen, setInternalOpen] = React.useState<boolean>(defaultOpen);
-  const triggerRef = React.useRef<HTMLButtonElement>(null);
-  const contentRef = React.useRef<HTMLDivElement>(null);
+  const [internalOpen, setInternalOpen] = useState<boolean>(defaultOpen);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
 
-  const setOpen = React.useCallback(
+  const setOpen = useCallback(
     (value: React.SetStateAction<boolean>) => {
       const nextState = value instanceof Function ? value(open) : value;
       if (!isControlled) setInternalOpen(nextState);
@@ -67,10 +77,10 @@ export const Root = ({
 };
 
 const Trigger = ({ children }: { children: TriggerElement }) => {
-  const { open, setOpen, triggerRef } = React.useContext(popoverContext);
-  const child = React.Children.only(children);
+  const { open, setOpen, triggerRef } = useContext(popoverContext);
+  const child = Children.only(children);
 
-  return React.cloneElement(child, {
+  return cloneElement(child, {
     ref: triggerRef,
     "aria-expanded": open,
     "aria-haspopup": "dialog",
@@ -96,13 +106,13 @@ const Content = ({
   align?: PopoverAlign;
   sideOffset?: number;
 }) => {
-  const { open, setOpen, triggerRef, contentRef, side, align, sideOffset } = React.useContext(popoverContext);
-  const [position, setPosition] = React.useState<Position | null>(null);
+  const { open, setOpen, triggerRef, contentRef, side, align, sideOffset } = useContext(popoverContext);
+  const [position, setPosition] = useState<Position | null>(null);
   const resolvedSide = sideProp ?? side;
   const resolvedAlign = alignProp ?? align;
   const resolvedSideOffset = sideOffsetProp ?? sideOffset;
 
-  const updatePosition = React.useCallback(() => {
+  const updatePosition = useCallback(() => {
     const trigger = triggerRef.current;
     const content = contentRef.current;
     if (!trigger || !content) return;
@@ -159,12 +169,12 @@ const Content = ({
     setPosition({ top, left });
   }, [resolvedAlign, resolvedSide, resolvedSideOffset, triggerRef, contentRef]);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!open) return;
     updatePosition();
   }, [open, updatePosition]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open) return;
 
     const handlePointerDown = (event: PointerEvent) => {
@@ -238,7 +248,7 @@ const Content = ({
 };
 
 export const usePopover = () => {
-  const context = React.useContext(popoverContext);
+  const context = useContext(popoverContext);
   if (!context) throw new Error("usePopover must be used within a Popover Provider");
   return context;
 };

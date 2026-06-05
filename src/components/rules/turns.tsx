@@ -3,9 +3,7 @@ import { Article } from "@/components/ui/article";
 export const Turns = () => {
   return (
     <Article title="Taking turns">
-      <p>
-        Turn order is commonly determined either by DM or by players agreement outside of battle.
-      </p>
+      <p>Turn order is commonly determined either by DM or by players agreement outside of battle.</p>
       <p>
         Once combat begins, the turn order is established by rolling an Initiative check. Characters act in descending
         order of their initiative score. Once every character has taken their turn, the current Round ends, and a new
