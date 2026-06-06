@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { Links } from "@/components/layout/links";
