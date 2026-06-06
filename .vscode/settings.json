@@ -24,10 +24,13 @@
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-containers"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  }
 }
