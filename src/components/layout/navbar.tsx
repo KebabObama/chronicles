@@ -5,7 +5,7 @@ import { Sidebar } from "@/components/layout/sidebar";
 export const Navbar = () => {
   const appName = process.env.APP_NAME as string;
   return (
-    <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b-2 bg-background px-4 shadow-sm font-dragon-hunter font-light tracking-wider md:px-6">
+    <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b-2 gap-4 bg-background px-4 shadow-sm font-dragon-hunter font-light tracking-wider md:px-6">
       <Link href="/" className="text-2xl flex items-baseline gap-3">
         {appName.split(" ").map((word) => (
           <span key={word} className="flex items-baseline">
@@ -15,7 +15,7 @@ export const Navbar = () => {
         ))}
       </Link>
       <Sidebar />
-      <header className="hidden items-center gap-8 md:flex">
+      <header className="hidden items-center gap-6 md:flex">
         <Links />
       </header>
     </nav>
