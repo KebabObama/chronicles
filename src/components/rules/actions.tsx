@@ -1,4 +1,5 @@
 import Image from "next/image";
+import image from "public/actions.webp";
 import { Article } from "@/components/ui/article";
 
 export const Actions = () => {
@@ -11,7 +12,7 @@ export const Actions = () => {
         available AP or chooses to "Pass", their turn officially ends.
       </p>
       <div className="relative w-full select-none aspect-21/3">
-        <Image src="/actions.webp" priority alt="Turn action order" fill className="pointer-events-none" />
+        <Image src={image} priority alt="Turn action order" fill className="pointer-events-none" />
       </div>
       <p>
         Each action has a fixed order of phases. The process begins when a player declares their intent; if the action
