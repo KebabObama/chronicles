@@ -62,7 +62,7 @@ export const Items = () => {
         </p>
         <Link href="/items#consumables" className="flex flex-row w-full items-center justify-center mt-auto">
           <FantasyButton variant="emerald" size="lg">
-            Dicover consumables
+            Discover consumables
           </FantasyButton>
         </Link>
       </article>
