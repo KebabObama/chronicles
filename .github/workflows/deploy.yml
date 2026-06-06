@@ -30,6 +30,8 @@ jobs:
         run: bun install
 
       - name: Build with Next.js
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.BASE_PATH }}
         run: bun run build
 
       - name: Upload artifact

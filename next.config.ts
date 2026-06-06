@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   },
   output: "export",
   images: { unoptimized: true },
-  basePath: "/chronicles",
+  basePath: process.env.BASE_PATH,
   typedRoutes: true,
 };
 
