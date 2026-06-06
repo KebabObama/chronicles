@@ -5,12 +5,12 @@ import { IoChevronDownCircleOutline } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 
 export const ScrollDown = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => setIsVisible(window.scrollY < 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const ctrl = new AbortController();
+    addEventListener("scroll", () => setVisible(scrollY <= 10), ctrl);
+    return () => ctrl.abort();
   }, []);
 
   return (
@@ -18,7 +18,7 @@ export const ScrollDown = () => {
       href="#items"
       className={cn(
         "fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-500 ease-in-out",
-        isVisible ? "opacity-100 translate-y-0 animate-bounce" : "opacity-0 translate-y-10 pointer-events-none",
+        visible ? "opacity-100 translate-y-0 animate-bounce" : "opacity-0 translate-y-10 pointer-events-none",
       )}>
       <span className="text-sm font-medium uppercase tracking-widest ">Scroll down</span>
       <IoChevronDownCircleOutline className="text-4xl" />

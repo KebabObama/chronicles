@@ -43,7 +43,7 @@ export const Sidebar = () => {
         onTouchStart={start}
         onTouchEnd={end}
         className={cn(
-          "fixed left-0 top-0 z-40 h-full w-64 bg-card p-6 md:hidden border-r-4 flex flex-col gap-6",
+          "fixed left-0 top-0 z-40 h-full min-w-xs -ml-4 bg-card px-6 py-6 md:hidden border-r-4 flex flex-col items-center gap-6",
           "will-change-transform transform transition-transform duration-300 ease-in-out",
           open ? "translate-x-0" : "-translate-x-full pointer-events-none",
         )}>
