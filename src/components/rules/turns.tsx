@@ -3,17 +3,23 @@ import { Article } from "@/components/ui/article";
 export const Turns = () => {
   return (
     <Article title="Taking turns">
-      <p>Turn order is commonly determined either by DM or by players agreement outside of battle.</p>
+      <p>Round outside of battle is commonly determined either by DM or by players's agreement.</p>
+      <p>
+        Most turns start by the DM setting the scene and describing the environment, actions of world and things that
+        happen to the party. This is usually followed by players stating their intentions or actions. The DM then
+        adjudicates those actions, describing the consequences and updating the state of the world before passing the
+        focus to the next player.
+      </p>
+      <p>
+        Combat can be triggered at any moment by a player's action or a narrative shift determined by the DM. When this
+        occurs, the flow of play is immediately interrupted. This effectively locks the current scene into "combat
+        mode", resetting the flow to a structured sequence where all participants act according to their initiative
+        results until the conflict is resolved.
+      </p>
       <p>
         Once combat begins, the turn order is established by rolling an Initiative check. Characters act in descending
         order of their initiative score. Once every character has taken their turn, the current Round ends, and a new
         one begins, maintaining the same turn order unless specified otherwise by game effects.
-      </p>
-      <p>
-        Every character possesses a specific number of Action Points (AP) at the start of their turn. The total amount
-        of AP is determined by the character's Level and Class. Action points are refreshed at the beginning of each
-        turn. A player performs their actions one by one. Once a player has spent their available AP or chooses to
-        "Pass" their turn officially ends.
       </p>
     </Article>
   );

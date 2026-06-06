@@ -26,7 +26,7 @@ export const Article = ({ title, children, id, heading: Tag = "h2", className }:
   const generatedId = id ?? title.toLowerCase().replace(/\s+/g, "-");
 
   return (
-    <article id={generatedId} className={cn("flex flex-col gap-4 py-6 container", className)}>
+    <article id={generatedId} className={cn("flex flex-col gap-4 py-6 text-justify", className)}>
       <Tag className={headerVariants({ heading: Tag })}>{title}</Tag>
       {children}
     </article>

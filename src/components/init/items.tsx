@@ -3,7 +3,7 @@ import { FantasyButton } from "@/components/ui/button";
 
 export const Items = () => {
   return (
-    <section id="items" className="container py-[15dvh] scroll-smooth grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <section id="items" className="container py-[15dvh] scroll-smooth grid grid-cols-1 xl:grid-cols-3 gap-6 mx-auto">
       <div />
       <h1
         className="bg-card text-card-foreground border shadow-lg p-6 select-none
