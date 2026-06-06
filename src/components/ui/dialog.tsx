@@ -1,4 +1,13 @@
-import { Children, cloneElement, createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import {
+  Children,
+  cloneElement,
+  createContext,
+  useCallback,
+  useContext,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { FaX } from "react-icons/fa6";
 import { cn, type TriggerElement } from "@/lib/utils";
 
@@ -58,7 +67,7 @@ const Content = ({
   const { open, setOpen } = useContext(dialogContext);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
     if (open && !dialog.open) {
