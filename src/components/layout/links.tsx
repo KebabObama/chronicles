@@ -30,7 +30,6 @@ export const Links = () => {
       <Icon className="size-5 -mt-0.5 translate-x-full opacity-0 group-hover/button:opacity-100 group-hover/button:translate-x-0 duration-300 transition-all" />
       <Button
         className="text-lg z-5"
-        orientation={!sub.length && "horizontal"}
         sub={
           !!sub.length &&
           sub.map((s) => (

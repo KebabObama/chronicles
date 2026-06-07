@@ -3,7 +3,7 @@
 @plugin "@toolwind/corner-shape";
 
 @theme inline {
-  --font-dragon-hunter: var(--font--dragon-hunter);
+  --font-dragon-hunter: var(--dragon-hunter);
 
   --color-background: oklch(0.145 0 0);
   --color-foreground: oklch(0.985 0 0);

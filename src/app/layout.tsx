@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const dragonHunter = localFont({
   src: "../../public/fonts/dragon-hunter.otf",
   display: "swap",
-  variable: "--font--dragon-hunter",
+  variable: "--dragon-hunter",
   preload: true,
   adjustFontFallback: "Times New Roman",
 });
