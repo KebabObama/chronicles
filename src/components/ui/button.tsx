@@ -40,13 +40,13 @@ export const Button = ({ className, type = "button", children, sub, ...props }: 
       )}
       <div
         className={cn(
-          "absolute top-full left-1/2 rounded group-hover/button:translate-y-0.75 -translate-y-0.5 -translate-x-1/2 group-hover/button:w-full w-0 bg-foreground h-0.5 transition-all duration-500 ease-out",
+          "absolute top-full left-1/2 rounded group-hover/button:translate-y-0.75 -translate-y-0.5 -translate-x-1/2 group-hover/button:w-full w-0 bg-foreground h-px transition-all duration-500 ease-out",
           sub && "md:hidden",
         )}
       />
       <div
         className={cn(
-          "absolute rounded-full top-full left-1/2 group-hover/button:translate-y-0.75 -translate-y-0.5 -translate-x-1/2 group-hover/button:w-3.5 z-1 w-0 bg-card h-0.5 transition-all duration-300 ease-out",
+          "absolute rounded-full top-full left-1/2 group-hover/button:translate-y-0.75 -translate-y-0.5 -translate-x-1/2 group-hover/button:w-3.5 z-1 w-0 bg-card h-px transition-all duration-300 ease-out",
           sub && "md:hidden",
         )}
       />
