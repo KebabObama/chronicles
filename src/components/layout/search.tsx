@@ -9,7 +9,7 @@ export const Search = ({ children }: { children: TriggerElement }) => {
       <Dialog.Trigger>{children}</Dialog.Trigger>
       <Dialog.Content>
         <h1 className="text-lg font-bold">Search</h1>
-        <input type={"text"} className={"border bg-input rounded-lg"} />
+        <input type="text" className="border bg-input rounded-lg" />
       </Dialog.Content>
     </Dialog>
   );

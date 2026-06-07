@@ -7,6 +7,7 @@ import type { IconType } from "react-icons";
 import { FaBalanceScale } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { GiMagicSwirl, GiSwitchWeapon } from "react-icons/gi";
+import { HiHome } from "react-icons/hi";
 import { Button } from "@/components/ui/button";
 
 type LinkedUrl = {
@@ -17,11 +18,12 @@ type LinkedUrl = {
 };
 
 const LINKS = [
+  { href: "/", label: "Home", Icon: HiHome, sub: [] },
   { href: "/rules", label: "Rules", Icon: FaBalanceScale, sub: [] },
   { href: "/classes", label: "Characters", Icon: FaPeopleGroup, sub: [] },
   { href: "/items", label: "Items", Icon: GiSwitchWeapon, sub: ["weapons", "armor", "consumables", "miscellaneous"] },
   { href: "/spells", label: "Abilities", Icon: GiMagicSwirl, sub: [] },
-] as LinkedUrl[];
+] as const satisfies LinkedUrl[];
 
 export const Links = () => {
   const router = useRouter();

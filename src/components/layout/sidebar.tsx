@@ -25,14 +25,14 @@ export const Sidebar = () => {
 
   return (
     <>
-      <button type="button" className="md:hidden" onClick={() => setOpen(!open)}>
+      <button type="button" className="lg:hidden" onClick={() => setOpen(!open)}>
         <BiMenu size={24} />
       </button>
       <button
         type="button"
         onClick={() => setOpen(false)}
         className={cn(
-          "fixed inset-0 z-30 bg-muted/20 md:hidden cursor-auto backdrop-blur-xs",
+          "fixed inset-0 z-30 bg-muted/20 lg:hidden cursor-auto backdrop-blur-xs",
           "will-change-auto transition-opacity duration-300 ease-in-out",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
@@ -43,7 +43,7 @@ export const Sidebar = () => {
         onTouchStart={start}
         onTouchEnd={end}
         className={cn(
-          "fixed left-0 top-0 z-40 h-full min-w-xs -ml-4 bg-card px-6 py-6 md:hidden border-r-4 flex flex-col items-center gap-6",
+          "fixed left-0 top-0 z-40 h-full min-w-xs -ml-4 bg-card px-6 py-6 lg:hidden border-r-4 flex flex-col items-center gap-6",
           "will-change-transform transform transition-transform duration-300 ease-in-out",
           open ? "translate-x-0" : "-translate-x-full pointer-events-none",
         )}>
