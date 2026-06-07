@@ -19,7 +19,7 @@ export const Button = ({ className, type = "button", children, sub, ...props }: 
         {children}
       </button>
       <svg
-        className="size-2 group-hover/button:size-3 absolute top-[calc(100%-0.25rem)] z-20 left-1/2 -translate-x-1/2 transition-all duration-300 group-hover/button:text-red-400 group-hover/button:translate-y-0.5 ease-out"
+        className="size-2 group-hover/button:size-3 absolute top-[calc(100%-0.25rem)] z-20 left-1/2 -translate-x-1/2 transition-all duration-400 group-hover/button:text-red-400 group-hover/button:translate-y-0.5 ease-out"
         viewBox="0 0 12 11"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@ export const Button = ({ className, type = "button", children, sub, ...props }: 
       {sub && (
         <div
           className={cn(
-            "absolute hidden md:block top-full left-1/2 -translate-x-1/2 transition-all duration-300 z-10 ease-out bg-background px-3 py-2",
+            "absolute hidden md:block top-full left-1/2 -translate-x-1/2 transition-all duration-500 z-10 ease-out bg-background px-3 py-2",
             "group-hover/button:opacity-100 group-hover/button:translate-y-1 group-hover/button:pointer-events-auto",
             "opacity-0 translate-y-2 pointer-events-none rounded-bl-2xl rounded-tr-2xl border-2",
           )}>
@@ -46,7 +46,7 @@ export const Button = ({ className, type = "button", children, sub, ...props }: 
       />
       <div
         className={cn(
-          "absolute rounded-full top-full left-1/2 group-hover/button:translate-y-0.75 -translate-y-0.5 -translate-x-1/2 group-hover/button:w-3.5 z-1 w-0 bg-card h-px transition-all duration-300 ease-out",
+          "absolute rounded-full top-full left-1/2 group-hover/button:translate-y-0.75 -translate-y-0.5 -translate-x-1/2 group-hover/button:w-3.5 z-1 w-0 bg-card h-px transition-all duration-500 ease-out",
           sub && "md:hidden",
         )}
       />
