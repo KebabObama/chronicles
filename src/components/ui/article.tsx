@@ -11,11 +11,11 @@ export type ArticleProps = {
   className?: string;
 };
 
-const headerVariants = cva("tracking-tight underline", {
+const headerVariants = cva("tracking-widest underline", {
   variants: {
     heading: {
-      h1: "font-extrabold text-3xl md:text-4xl",
-      h2: "font-bold text-2xl",
+      h1: "text-3xl md:text-4xl font-dragon-hunter underline-offset-6",
+      h2: "font-light text-2xl font-dragon-hunter underline-offset-4",
       h3: "font-semibold text-xl",
     },
   },
@@ -23,7 +23,12 @@ const headerVariants = cva("tracking-tight underline", {
 });
 
 export const Article = ({ title, children, id, heading: Tag = "h2", className }: ArticleProps) => {
-  const generatedId = id ?? title.toLowerCase().replace(/\s+/g, "-");
+  const generatedId =
+    id ??
+    title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
   return (
     <article id={generatedId} className={cn("flex flex-col gap-4 py-6 text-justify", className)}>

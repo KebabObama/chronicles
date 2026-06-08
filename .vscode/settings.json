@@ -32,5 +32,12 @@
   },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  },
+  "cSpell.words": ["bunx", "unrs", "oklch"],
+  "cSpell.diagnosticLevel": "Warning",
+  "[mdx]": {
+    "editor.defaultFormatter": "unifiedjs.vscode-mdx",
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 120
   }
 }

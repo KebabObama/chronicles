@@ -27,10 +27,12 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.mdx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "public"
+    "public",
+    "scripts/generate-rules.js"
   ],
   "exclude": ["node_modules", "dist", "out"]
 }

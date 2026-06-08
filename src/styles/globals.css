@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@toolwind/corner-shape";
+@plugin "@tailwindcss/typography";
 
 @theme inline {
   --font-dragon-hunter: var(--dragon-hunter);

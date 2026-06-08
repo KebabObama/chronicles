@@ -2,6 +2,7 @@ import {
   Children,
   cloneElement,
   createContext,
+  isValidElement,
   useCallback,
   useContext,
   useLayoutEffect,
@@ -9,7 +10,7 @@ import {
   useState,
 } from "react";
 import { FaX } from "react-icons/fa6";
-import { cn, type TriggerElement } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export type DialogContext = {
   open: boolean;
@@ -22,6 +23,10 @@ export type RootProps = {
   onChange?: (open: boolean) => void;
   children: React.ReactNode;
 };
+
+type TriggerChildProps = React.ReactElement<{
+  onClick?: React.MouseEventHandler;
+}>;
 
 export const dialogContext = createContext<DialogContext>({} as DialogContext);
 
@@ -43,13 +48,15 @@ export const Root = ({ defaultOpen = false, open: controlledOpen, onChange, chil
   return <dialogContext.Provider value={{ open, setOpen }}>{children}</dialogContext.Provider>;
 };
 
-const Trigger = ({ children }: { children: TriggerElement }) => {
+const Trigger = ({ children }: { children: React.ReactNode }) => {
   const { setOpen } = useContext(dialogContext);
-  const child = Children.only(children);
 
-  return cloneElement(child, {
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
-      child.props.onClick?.(e);
+  const child = Children.toArray(children)[0];
+  if (!isValidElement(child)) return <>{children}</>;
+
+  return cloneElement(child as TriggerChildProps, {
+    onClick: (e: React.MouseEvent) => {
+      (child as TriggerChildProps).props.onClick?.(e);
       setOpen((p) => !p);
     },
   });
