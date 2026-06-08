@@ -3,13 +3,11 @@ import {
   cloneElement,
   createContext,
   isValidElement,
-  useCallback,
   useContext,
   useLayoutEffect,
   useRef,
   useState,
 } from "react";
-import { FaX } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 
 export type DialogContext = {
@@ -36,14 +34,11 @@ export const Root = ({ defaultOpen = false, open: controlledOpen, onChange, chil
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
 
-  const setOpen = useCallback(
-    (value: React.SetStateAction<boolean>) => {
-      const nextState = value instanceof Function ? value(open) : value;
-      if (!isControlled) setInternalOpen(nextState);
-      onChange?.(nextState);
-    },
-    [isControlled, open, onChange],
-  );
+  const setOpen = (value: React.SetStateAction<boolean>) => {
+    const nextState = value instanceof Function ? value(open) : value;
+    if (!isControlled) setInternalOpen(nextState);
+    onChange?.(nextState);
+  };
 
   return <dialogContext.Provider value={{ open, setOpen }}>{children}</dialogContext.Provider>;
 };
@@ -62,15 +57,7 @@ const Trigger = ({ children }: { children: React.ReactNode }) => {
   });
 };
 
-const Content = ({
-  children,
-  className,
-  close = true,
-}: {
-  children?: React.ReactNode;
-  className?: string;
-  close?: boolean;
-}) => {
+const Content = ({ children, className }: { children?: React.ReactNode; className?: string; close?: boolean }) => {
   const { open, setOpen } = useContext(dialogContext);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -88,27 +75,19 @@ const Content = ({
     <dialog
       ref={dialogRef}
       role={"none"}
+      className="bg-transparent border-none p-0 max-w-none max-h-none overflow-visible backdrop:bg-muted/60 backdrop:backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === dialogRef.current) setOpen(false);
-      }}
-      className="bg-transparent border-none p-0 max-w-none max-h-none overflow-visible backdrop:bg-muted/60 backdrop:backdrop-blur-sm open:animate-in open:fade-in-0">
+      }}>
       <div
         role={"none"}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "fixed inset-0 z-50 m-auto grid w-full max-w-lg gap-4 border rounded-2xl text-foreground bg-card p-6 shadow-lg h-fit",
-          "animate-in fade-in-0 zoom-in-95 duration-200",
+          "fixed inset-0 z-50 m-auto grid w-full max-w-lg gap-4 border rounded-3xl text-foreground bg-card p-8 shadow-lg h-fit",
+          "fade-in-0 zoom-in-95 duration-200 corner-scoop animate-in",
           className,
         )}>
         {children}
-        {close && (
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="absolute right-5 top-5 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none">
-            <FaX />
-          </button>
-        )}
       </div>
     </dialog>
   );

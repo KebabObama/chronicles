@@ -32,7 +32,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "public",
-    "scripts/generate-rules.js"
+    "scripts"
   ],
   "exclude": ["node_modules", "dist", "out"]
 }

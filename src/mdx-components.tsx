@@ -2,11 +2,23 @@ import type { MDXComponents } from "mdx/types";
 import { cn } from "@/lib/utils";
 
 const components: MDXComponents = {
-  h1: ({ children }) => (
-    <h1 className="font-dragon-hunter text-3xl tracking-widest underline underline-offset-6 md:text-4xl">{children}</h1>
+  h1: ({ children, ...props }) => (
+    <h1
+      {...props}
+      className="scroll-mt-24 font-dragon-hunter text-3xl tracking-widest underline underline-offset-6 md:text-4xl">
+      {children}
+    </h1>
   ),
-  h2: ({ children }) => <h2 className="font-dragon-hunter text-2xl tracking-widest font-extralight">{children}</h2>,
-  h3: ({ children }) => <h3 className="text-xl font-semibold tracking-wide">{children}</h3>,
+  h2: ({ children, ...props }) => (
+    <h2 {...props} className="scroll-mt-24 font-dragon-hunter text-2xl font-extralight tracking-widest">
+      {children}
+    </h2>
+  ),
+  h3: ({ children, ...props }) => (
+    <h3 {...props} className="scroll-mt-24 text-xl font-semibold tracking-wide">
+      {children}
+    </h3>
+  ),
   p: ({ children }) => <p className="leading-7 my-2 text-muted-foreground text-justify">{children}</p>,
   a: ({ href, children }) => (
     <a href={href} className="underline underline-offset-4 transition-colors hover:text-muted-foreground">
@@ -35,6 +47,6 @@ const components: MDXComponents = {
   ),
 };
 
-export function useMDXComponents(): MDXComponents {
+export const useMDXComponents = () => {
   return components;
-}
+};

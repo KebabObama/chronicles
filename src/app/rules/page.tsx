@@ -1,24 +1,29 @@
 import { AttributeTable } from "@/components/ui/attribute-table";
-import * as Actions from "@/content/rules/actions.mdx";
-import * as Attributes from "@/content/rules/attributes.mdx";
-import * as Turns from "@/content/rules/turns.mdx";
+import Actions from "@/content/rules/actions.mdx";
+import Attributes from "@/content/rules/attributes.mdx";
+import Checks from "@/content/rules/checks.mdx";
+import Turns from "@/content/rules/turns.mdx";
 
 export default () => {
   return (
-    <main className="container mx-auto grid lg:grid-cols-2 gap-4 p-4 lg:py-8 lg:gap-6 xl:gap-10">
-      <article id={Turns.slug} className="scroll-mt-24">
-        <Turns.default />
+    <main className="container mx-auto grid xl:grid-cols-2 gap-4 p-4 lg:py-8 lg:gap-6 xl:gap-10">
+      <article>
+        <Turns />
       </article>
 
-      <article id={Actions.slug} className="scroll-mt-24">
-        <Actions.default />
+      <article>
+        <Actions />
       </article>
 
-      <article id={Attributes.slug} className="scroll-mt-24 flex flex-col lg:flex-row gap-4">
+      <article className="flex flex-col lg:flex-row gap-4">
         <div className="grow">
-          <Attributes.default />
+          <Attributes />
         </div>
         <AttributeTable />
+      </article>
+
+      <article>
+        <Checks />
       </article>
     </main>
   );
