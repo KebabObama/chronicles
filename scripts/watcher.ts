@@ -10,12 +10,14 @@ const watcher = watch("src/content", { recursive: true }, (event, filename) => {
     console.log(`Detected ${event} in ${filename}`);
 
     try {
-      await buildSearchIndex();
+      await Promise.all([buildSearchIndex()]);
     } catch (error) {
       console.error("Failed to build search index:", error);
     }
   }, 500);
 });
+
+console.log("\nWatching for changes in src/content...\n");
 
 process.on("SIGINT", () => {
   console.log("Closing watcher...");

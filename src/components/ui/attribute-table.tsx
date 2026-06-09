@@ -1,9 +1,9 @@
 export const ATTRIBUTES: [score: string, mod: string][] = [
-  ["1", "-5"],
-  ["2 - 3", "-4"],
-  ["4 - 5", "-3"],
-  ["6 - 7", "-2"],
-  ["8 - 9", "-1"],
+  ["   1   ", "-5"],
+  [" 2 -  3", "-4"],
+  [" 4 -  5", "-3"],
+  [" 6 -  7", "-2"],
+  [" 8 -  9", "-1"],
   ["10 - 11", "+0"],
   ["12 - 13", "+1"],
   ["14 - 15", "+2"],
@@ -13,7 +13,7 @@ export const ATTRIBUTES: [score: string, mod: string][] = [
 
 export const AttributeTable = () => {
   return (
-    <table className="w-full h-fit text-center tracking-wide border-2">
+    <table className="w-full h-fit text-center tracking-wide border-2 self-center">
       <thead className="bg-muted font-dragon-hunter font-extralight">
         <tr>
           <th className="border-b p-2">Score</th>

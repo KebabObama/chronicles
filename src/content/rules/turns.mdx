@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 # Taking turns
 
 Round outside of battle is commonly determined either by the DM or by the players' agreement.
@@ -7,3 +9,20 @@ Most turns start by the DM setting the scene and describing the environment, act
 Combat can be triggered at any moment by a player's action or a narrative shift determined by the DM. When this occurs, the flow of play is immediately interrupted. This effectively locks the current scene into "combat mode", resetting the flow to a structured sequence where all participants act according to their initiative results until the conflict is resolved.
 
 Once combat begins, the turn order is established by rolling an Initiative check. Characters act in descending order of their initiative score. Once every character has taken their turn, the current round ends, and a new one begins, maintaining the same turn order unless specified otherwise by game effects.
+
+# Player's turn
+
+Every character possesses a specific number of Action Points (AP) at the start of their turn. The total amount of AP is determined by the character's Level and Class. Action points are refreshed at the beginning of each turn right after applying effects. A player performs their actions one by one. Once a player has spent their available AP or chooses to pass, their turn officially ends.
+
+<Image
+  src="/pictures/actions.webp"
+  alt="Turn action order"
+  priority
+  width={2642}
+  height={384}
+  className="w-full aspect-2642/384 my-8"
+/>
+
+Each action has a fixed order of phases. The process begins when a player declares their intent; if the action requires an attack roll, it is resolved immediately. Following this, other characters may utilize their allotted Reactions. Each character has a specific limit of reactions per turn, which can be spent to cast defensive spells, counterattack, or attempt to dodge.
+
+Once reactions are resolved, the target of the action makes any required saving throws. Based on these results, the final damage and status effects are applied to conclude the action.

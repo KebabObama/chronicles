@@ -9,7 +9,8 @@
     "**/bun.lock": true,
     "**/tsconfig.tsbuildinfo": true,
     "**/components.json": true,
-    "**/.gitkeep": true
+    "**/.gitkeep": true,
+    "**/mdx.d.ts": true
   },
   "editor.defaultFormatter": "biomejs.biome",
   "js/ts.experimental.useTsgo": true,
