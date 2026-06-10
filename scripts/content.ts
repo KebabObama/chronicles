@@ -9,6 +9,12 @@ export type SearchItem = {
   content: string;
 };
 
+export type RouteHeading = {
+  id: string;
+  title: string;
+  level: number;
+};
+
 const headingPattern = /^(#{1,6})\s+(.+?)\s*$/;
 
 export const getMdxFiles = async (dir = "src/content"): Promise<string[]> => {
@@ -41,10 +47,10 @@ const getDocumentRoute = (file: string) => {
 
 const splitSections = (source: string) => {
   const lines = source.split(/\r?\n/);
-  const sections: Array<{ title: string; content: string[] }> = [];
+  const sections: Array<{ title: string; level: number; content: string[] }> = [];
   const slugger = new GithubSlugger();
 
-  let current: { title: string; content: string[] } | null = null;
+  let current: { title: string; level: number; content: string[] } | null = null;
   let inFence = false;
 
   for (const line of lines) {
@@ -61,6 +67,7 @@ const splitSections = (source: string) => {
 
       current = {
         title: match[2].trim(),
+        level: match[1].length,
         content: [],
       };
 
@@ -85,25 +92,24 @@ const splitSections = (source: string) => {
 export const buildSearchIndex = async () => {
   const files = await getMdxFiles();
 
-  const entries = await Promise.all(
-    files.map(async (file) => {
-      const source = await fs.readFile(file, "utf8");
-      const route = getDocumentRoute(file);
-      const headings = splitSections(source);
+  const searchEntries: SearchItem[] = [];
 
-      return headings.map(
-        (heading) =>
-          ({
-            id: heading.id,
-            url: `/${route}#${heading.id}`,
-            title: heading.title,
-            content: heading.content.join("\n").trim(),
-          }) satisfies SearchItem,
-      );
-    }),
-  );
+  for (const file of files) {
+    const source = await fs.readFile(file, "utf8");
+    const route = getDocumentRoute(file);
+    const headings = splitSections(source);
 
-  await fs.writeFile("public/search-index.json", JSON.stringify(entries.flat(), null, 2));
+    const entries = headings.map((heading) => ({
+      id: heading.id,
+      url: `/${route}#${heading.id}`,
+      title: heading.title,
+      content: heading.content.join("\n").trim(),
+    }));
+
+    searchEntries.push(...entries);
+  }
+
+  await fs.writeFile("public/search-index.json", JSON.stringify(searchEntries, null, 2));
 };
 
 if (import.meta.main) {

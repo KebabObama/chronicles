@@ -13,14 +13,14 @@ export const ATTRIBUTES: [score: string, mod: string][] = [
 
 export const AttributeTable = () => {
   return (
-    <table className="w-full h-fit text-center tracking-wide border-2 self-center">
-      <thead className="bg-muted font-dragon-hunter font-extralight">
+    <table className="w-full lg:max-w-3xs text-center tracking-wide rounded-2xl overflow-hidden corner-scoop self-center">
+      <thead className="bg-muted font-dragon-hunter font-extralight border-2 h-8">
         <tr>
-          <th className="border-b p-2">Score</th>
-          <th className="border-b p-2">Mod</th>
+          <th className="p-2">Score</th>
+          <th className="p-2">Mod</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="border-2">
         {ATTRIBUTES.map(([score, mod]) => (
           <tr key={score}>
             <td className="border-b px-2 border-r py-1">{score}</td>
@@ -28,6 +28,13 @@ export const AttributeTable = () => {
           </tr>
         ))}
       </tbody>
+      <tfoot className="h-8 w-full bg-muted font-dragon-hunter text-center font-extralight">
+        <tr>
+          <td colSpan={2} className="p-2">
+            Table of attributes
+          </td>
+        </tr>
+      </tfoot>
     </table>
   );
 };

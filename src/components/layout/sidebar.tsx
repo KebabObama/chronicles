@@ -1,54 +1,56 @@
 "use client";
 
-import { useState } from "react";
-import { BiMenu } from "react-icons/bi";
-import { Links } from "@/components/layout/links";
-import { cn } from "@/lib/utils";
+import { useRef } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { Dialog } from "@/components/ui/dialog";
 
 const CLOSING_DISTANCE = 50;
 
-export const Sidebar = () => {
-  const [open, setOpen] = useState<boolean>(false);
+type Pointer = {
+  clientX: number;
+  clientY: number;
+};
 
-  let touchStartX = 0;
+export const Sidebar = ({ children }: { children?: React.ReactNode }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
 
-  const start = (e: React.TouchEvent<HTMLButtonElement>) => {
-    touchStartX = e.changedTouches[0].screenX;
+  let pointerStart: Pointer = {
+    clientX: 0,
+    clientY: 0,
   };
 
-  const end = (e: React.TouchEvent<HTMLButtonElement>) => {
-    const touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > CLOSING_DISTANCE) {
-      setOpen(false);
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    pointerStart = e;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    const deltaX = pointerStart.clientX - e.clientX;
+    const deltaY = pointerStart.clientY - e.clientY;
+
+    const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+
+    if (distance > CLOSING_DISTANCE) {
+      dialogRef.current?.hidePopover();
     }
   };
 
   return (
-    <>
-      <button type="button" className="lg:hidden" onClick={() => setOpen(!open)}>
-        <BiMenu size={24} />
-      </button>
-      <button
-        type="button"
-        onClick={() => setOpen(false)}
-        className={cn(
-          "fixed inset-0 z-30 bg-muted/20 lg:hidden cursor-auto backdrop-blur-xs",
-          "will-change-auto transition-opacity duration-300 ease-in-out",
-          open ? "opacity-100" : "pointer-events-none opacity-0",
-        )}
-        onTouchStart={start}
-        onTouchEnd={end}
-      />
-      <aside
-        onTouchStart={start}
-        onTouchEnd={end}
-        className={cn(
-          "fixed left-0 top-0 z-40 h-full min-w-xs -ml-4 bg-card px-6 py-6 lg:hidden border-r-4 flex flex-col items-center gap-6",
-          "will-change-transform transform transition-transform duration-300 ease-in-out",
-          open ? "translate-x-0" : "-translate-x-full pointer-events-none",
-        )}>
-        <Links />
-      </aside>
-    </>
+    <Dialog>
+      <Dialog.Trigger>
+        <button type="button" className="lg:hidden">
+          <GiHamburgerMenu size={24} />
+        </button>
+      </Dialog.Trigger>
+      <Dialog.Content
+        ref={dialogRef}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        className="sm:rounded-l-none touch-pan-y sm:inset-auto open:flex flex-col h-[calc(100%-1.25rem)] w-[calc(100%-1.25rem)] items-center max-w-none sm:w-auto text-center lg:open:hidden sm:min-w-xs sm:top-0 sm:left-0 sm:bottom-0">
+        {children}
+      </Dialog.Content>
+    </Dialog>
   );
 };
