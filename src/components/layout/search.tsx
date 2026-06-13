@@ -2,45 +2,93 @@
 
 import type { Route } from "next";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { GiArchiveResearch, GiCrossMark } from "react-icons/gi";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { GiClockwork, GiCrossMark } from "react-icons/gi";
 import { Dialog } from "@/components/ui/dialog";
-import { NavButton } from "@/components/ui/nav-button";
 import { getSearchIndex, type SearchItem } from "@/lib/search-index";
 
-export const Search = () => {
+const HISTORY_KEY = "search-history";
+
+export const Search = ({ children }: { children: React.ReactNode }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
   const [query, setQuery] = useState("");
   const [items, setItems] = useState<SearchItem[]>([]);
+  const [history, setHistory] = useState<string[]>([]);
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       setItems(await getSearchIndex());
     })();
+
+    setHistory((JSON.parse(localStorage.getItem(HISTORY_KEY) ?? "[]") as string[]).slice(0, 3));
+
+    const handle = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === "k") {
+        e.preventDefault();
+        dialogRef.current?.togglePopover();
+      }
+
+      if (e.key === "/") {
+        e.preventDefault();
+        dialogRef.current?.togglePopover();
+      }
+    };
+
+    window.addEventListener("keydown", handle);
+    return () => window.removeEventListener("keydown", handle);
   }, []);
+
+  const addToHistory = (id: string) => {
+    const next = [id, ...history.filter((x) => x !== id)].slice(0, 3);
+
+    setHistory(next);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
+  };
 
   const filtered = useMemo(() => {
     const value = query.trim().toLowerCase();
+
+    if (!value) {
+      return [...items]
+        .sort((a, b) => {
+          const ai = history.indexOf(a.id);
+          const bi = history.indexOf(b.id);
+          if (ai === -1 && bi === -1) return 0;
+          if (ai === -1) return 1;
+          if (bi === -1) return -1;
+          return ai - bi;
+        })
+        .slice(0, 5);
+    }
+
     return items
-      .filter((item) => {
-        const haystack = `${item.title} ${item.content}`.toLowerCase();
-        return haystack.includes(value);
+      .map((item) => {
+        const title = item.title.toLowerCase();
+        const content = item.content.toLowerCase();
+        let score = 0;
+        if (title === value) score += 1000;
+        else if (title.startsWith(value)) score += 600;
+        else if (title.includes(value)) score += 300;
+        if (content.includes(value)) score += 75;
+        const historyIndex = history.indexOf(item.id);
+        if (historyIndex !== -1) score += 30 - historyIndex * 10;
+        return { item, score };
       })
-      .slice(0, 3);
-  }, [items, query]);
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map((x) => x.item)
+      .slice(0, 5);
+  }, [items, query, history]);
 
   return (
     <Dialog>
-      <Dialog.Trigger>
-        <button
-          type="button"
-          className="flex items-center text-lg gap-2 z-5 group/button group/arrow group/underline cursor-pointer">
-          <GiArchiveResearch className="size-5 translate-x-full opacity-0 group-hover/button:opacity-100 group-hover/button:translate-x-0 duration-300 transition-all" />
-          <NavButton className="text-foreground lg:text-muted-foreground">Search</NavButton>
-        </button>
-      </Dialog.Trigger>
-      <Dialog.Content className="min-h-82 space-y-4">
+      <Dialog.Trigger>{children}</Dialog.Trigger>
+
+      <Dialog.Content className="min-h-82 space-y-4" ref={dialogRef}>
         <h1 className="text-xl font-light font-dragon-hunter">Search articles</h1>
-        <div className="w-full relative">
+
+        <div className="relative w-full">
           <input
             autoFocus
             value={query}
@@ -48,9 +96,9 @@ export const Search = () => {
             placeholder="Search headings and body text"
             className="w-full rounded-lg border-2 bg-input px-3 py-2"
           />
+
           <GiCrossMark
-            className="absolute top-1/2 p-1 size-6 -translate-y-1/2 right-2 z-5 cursor-pointer"
-            tabIndex={0}
+            className="absolute top-1/2 right-2 z-5 size-6 -translate-y-1/2 cursor-pointer p-1"
             onClick={() => setQuery("")}
           />
         </div>
@@ -60,9 +108,14 @@ export const Search = () => {
             <Link
               key={item.id}
               href={item.url as Route}
-              className="hover:bg-muted/20 flex flex-col justify-between relative px-2 py-0.5">
+              onClick={() => addToHistory(item.id)}
+              className="group/select hover:bg-muted/20 relative flex flex-col px-2 py-0.5 text-start">
               <p className="font-semibold">{item.title}</p>
-              <p className="text-xs text-muted-foreground"> {item.url}</p>
+              <p className="text-muted-foreground text-xs">{item.url}</p>
+
+              {history.includes(item.id) && (
+                <GiClockwork className="text-muted-foreground group-hover/select:text-foreground group-focus/select:text-foreground absolute top-1/2 right-4 -translate-y-1/2" />
+              )}
             </Link>
           ))}
         </div>

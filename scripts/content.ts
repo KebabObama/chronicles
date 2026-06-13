@@ -9,39 +9,28 @@ export type SearchItem = {
   content: string;
 };
 
-export type RouteHeading = {
-  id: string;
-  title: string;
-  level: number;
-};
+const headingPattern = /^\s*(#{1,6})\s+(.+?)\s*$/; // Allowed leading whitespace for MDX tags
 
-const headingPattern = /^(#{1,6})\s+(.+?)\s*$/;
-
-export const getMdxFiles = async (dir = "src/content"): Promise<string[]> => {
-  const entries = await fs.readdir(dir, {
-    withFileTypes: true,
-  });
-
+export const getMdxFiles = async (dir = "src/app"): Promise<string[]> => {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
   const files = await Promise.all(
     entries.map(async (entry) => {
       const fullPath = path.join(dir, entry.name);
-
-      if (entry.isDirectory()) {
-        return getMdxFiles(fullPath);
-      }
-
+      if (entry.isDirectory()) return getMdxFiles(fullPath);
       return fullPath.endsWith(".mdx") ? [fullPath] : [];
     }),
   );
-
   return files.flat();
 };
 
 const getDocumentRoute = (file: string) => {
-  const relative = path.relative("src/content", file);
-  const withoutExtension = relative.replace(/\.mdx$/, "");
-  const segments = withoutExtension.split(path.sep);
+  const relativePath = path.relative("src/app", file);
+  const normalized = relativePath.split(path.sep).join("/");
+  const segments = normalized.split("/");
 
+  if (segments.length === 1) {
+    return segments[0].replace(/\.mdx$/, "");
+  }
   return segments.slice(0, -1).join("/");
 };
 
@@ -54,7 +43,14 @@ const splitSections = (source: string) => {
   let inFence = false;
 
   for (const line of lines) {
-    if (/^```/.test(line.trim())) {
+    const trimmed = line.trim();
+
+    // Skip JS/TS imports inside MDX so they don't clutter search text
+    if (trimmed.startsWith("import ") && (trimmed.includes("from '") || trimmed.includes('from "'))) {
+      continue;
+    }
+
+    if (/^```/.test(trimmed)) {
       inFence = !inFence;
     }
 
@@ -71,11 +67,20 @@ const splitSections = (source: string) => {
         content: [],
       };
 
+      // Clean up the heading text if it has trailing MDX characters
+      if (current.title.endsWith(">")) {
+        current.title = current.title.replace(/>+$/, "").trim();
+      }
+
       continue;
     }
 
     if (current) {
-      current.content.push(line);
+      // Clean up standalone JSX/MDX tags from the content search text block if desired
+      // but keep the text inside them intact.
+      if (trimmed !== "" && !trimmed.startsWith("<Item") && trimmed !== "</Item>") {
+        current.content.push(line);
+      }
     }
   }
 
@@ -91,7 +96,6 @@ const splitSections = (source: string) => {
 
 export const buildSearchIndex = async () => {
   const files = await getMdxFiles();
-
   const searchEntries: SearchItem[] = [];
 
   for (const file of files) {

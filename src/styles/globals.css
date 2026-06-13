@@ -4,6 +4,8 @@
 @plugin "@toolwind/corner-shape";
 @plugin "@tailwindcss/typography";
 
+@custom-variant tooltip (& [data-tooltip]);
+
 @theme inline {
   --font-dragon-hunter: var(--dragon-hunter);
 

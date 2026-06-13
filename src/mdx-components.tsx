@@ -5,17 +5,21 @@ const components: MDXComponents = {
   h1: ({ children, ...props }) => (
     <h1
       {...props}
-      className="mt-8 mb-4 scroll-mt-24 font-dragon-hunter text-3xl tracking-widest underline underline-offset-6 md:text-4xl">
+      className="mt-8 mb-4 scroll-mt-24 font-dragon-hunter text-foreground/90 text-2xl sm:text-3xl tracking-widest underline underline-offset-6 md:text-4xl text-center lg:text-start">
       {children}
     </h1>
   ),
   h2: ({ children, ...props }) => (
-    <h2 {...props} className="scroll-mt-24 mt-6 font-dragon-hunter text-2xl font-extralight tracking-widest">
+    <h2
+      {...props}
+      className="scroll-mt-24 mt-6 font-dragon-hunter text-foreground/90 underline underline-offset-4 text-xl sm:text-2xl font-extralight tracking-widest text-center lg:text-start">
       {children}
     </h2>
   ),
   h3: ({ children, ...props }) => (
-    <h3 {...props} className="scroll-mt-24 mt-4 text-xl font-semibold tracking-wide">
+    <h3
+      {...props}
+      className="scroll-mt-24 mt-4 text-lg font-dragon-hunter text-foreground/90 font-extralight tracking-widest text-center lg:text-start">
       {children}
     </h3>
   ),

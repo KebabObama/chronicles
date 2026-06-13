@@ -2,24 +2,28 @@ import { Arrow, Underline } from "@/components/ui/decorations";
 import { cn } from "@/lib/utils";
 
 type Props = React.HTMLAttributes<HTMLSpanElement> & {
-  tooltip: React.ReactNode;
-  tClassName?: string;
+  title: string;
 };
 
-export const T = ({ tooltip, children, className, tClassName, ...props }: Props) => {
+export const T = ({ title, children, className, ...props }: Props) => {
   return (
-    <i className={cn("group/tooltip group/underline group/arrow relative inline-flex", className)} {...props}>
-      {children}
-      <Arrow className="mt-1" />
-      <Underline className="mt-1" variant="shrinking" />
-      <span
-        className={cn(
-          "absolute hidden lg:block top-full -mt-px drop-shadow-sm drop-shadow-muted-foreground left-1/2 -translate-x-1/2 transition-all duration-500 cursor-auto z-10 ease-out bg-background px-6 pb-2 pt-1 opacity-0 translate-y-2 pointer-events-none rounded-bl-2xl rounded-tr-2xl border-2",
-          "group-hover/tooltip:opacity-100 group-hover/tooltip:pointer-events-auto",
-          tClassName,
-        )}>
-        {tooltip}
-      </span>
-    </i>
+    <span
+      className={cn(
+        "group/tooltip group/underline group/arrow italic hover:text-foreground relative inline-flex overflow-visible hover:z-80",
+        "tooltip:absolute tooltip:hidden tooltip:lg:block tooltip:top-full tooltip:w-max tooltip:not-italic",
+        "tooltip:max-w-xs tooltip:sm:max-w-sm tooltip:md:max-w-md tooltip:min-w-48 tooltip:text-muted-foreground tooltip:translate-y-2",
+        "tooltip:text-start tooltip:drop-shadow-sm tooltip:drop-shadow-muted-foreground tooltip:left-1/2",
+        "tooltip:-translate-x-1/2 tooltip:transition-all tooltip:duration-500 tooltip:cursor-auto tooltip:z-40",
+        "tooltip:ease-out tooltip:bg-background tooltip:px-6 tooltip:pb-2 tooltip:pt-1 tooltip:opacity-0",
+        "tooltip:pointer-events-none tooltip:rounded-bl-2xl tooltip:rounded-tr-2xl tooltip:border-2",
+        "tooltip:group-hover/tooltip:opacity-100 tooltip:group-hover/tooltip:translate-y-0.75 tooltip:text-sm",
+        className,
+      )}
+      {...props}>
+      {title}
+      <Arrow />
+      <Underline variant="shrinking" />
+      <span data-tooltip>{children}</span>
+    </span>
   );
 };

@@ -1,0 +1,200 @@
+import * as Tooltips from "@/components/ui/tooltips";
+import { AttributeTable } from "@/components/ui/attribute-table";
+
+# Taking Turns
+
+The flow of time and exploration follows a structured narrative cycle that fluidly transitions between freeform roleplay and precise, tactical engagement. This dual approach allows for moments of introspection, exploration, and character development alongside intense combat encounters where every action carries weight and consequence.
+
+### Narrative Play
+
+Outside the strictures of battle, time flows organically. The Dungeon Master (DM) establishes the setting through vivid description—the damp stone of ancient catacombs, the acrid smell of dying campfires, the unsettling silence of an abandoned village. Time progression is determined dynamically by the DM or through group consensus, allowing the narrative to breathe and expand naturally without mechanical constraints.
+
+The gameplay loop follows a familiar rhythm: the DM paints the scene and describes how the world reacts to the party's previous actions. Environmental shifts reveal new challenges—a distant rumble might signal approaching danger, or a found door might open fresh possibilities for exploration. Following this exposition, each player in turn declares their intended goals, actions, or movements. The DM adjudicates these choices through open conversation and occasional rolls when outcomes remain uncertain. As each player's actions ripple through the world, the DM updates the state of reality and shifts focus to the next adventurer, maintaining continuous narrative momentum and ensuring every voice remains engaged.
+
+### Transitioning to Conflict
+
+Conflict erupts when an unstoppable force meets an immovable object. Perhaps a player character draws steel in an act of defiant aggression, or a group of enemies surges from the shadows in a calculated ambush. Sometimes the DM introduces a dramatic narrative moment—an ancient trap springs open, a crumbling bridge begins to collapse, or a once-peaceful negotiation devolves into violence. Whatever the catalyst, the transition is sudden and absolute.
+
+When battle begins, the free-flowing narrative play ceases immediately. The world around the adventurers crystallizes into a battlefield, and every second becomes precious. Time is no longer measured in hours or casual turns but in precise six-second increments known as combat rounds. All participants abandon their casual, improvisational approach and lock into an orderly battle sequence determined entirely by their <Tooltips.Initiative /> checks. Characters act in strict descending order of their initiative results, cycling through active rounds in sequence until the conflict reaches its inevitable conclusion—victory, defeat, or negotiated peace.
+
+# Player's Turn
+
+Combat encounters grant every individual creature a dedicated window of activity driven by a carefully managed pool of tactical resources. This resource becomes the primary currency of battle—how you spend it determines whether you seize victory or fall to defeat.
+
+Every participant operates using a dynamic pool of <Tooltips.ActionPoints />, representing their stamina, focus, and capacity for action during a single combat round. The precise amount of AP available on any given turn scales directly with a character's Level, their chosen Class archetype, and any active status conditions affecting them. A powerful, experienced champion might command a vast reservoir of points, while a weakened combatant finds their options severely constrained. This system ensures that every turn feels meaningful—players must carefully consider how to allocate their limited resources for maximum tactical advantage.
+
+### Turn Initialization & Simultaneous Resolution
+
+At the precise moment a character's turn begins, before they can perform any action, the world asserts its influence on their body and mind. All conditions and triggers slated for the start of a turn execute simultaneously in a single cascading moment. This critical window handles the activation of ongoing <Tooltips.Buff /> mechanics—magical enhancements that surge through a creature's body, amplifying their strength or sharpening their reflexes. Harmful <Tooltips.Debuff /> effects activate as well, poisons burning through the bloodstream, curses draining vitality, or hexes clouding the mind. Additionally, damage-over-time effects tick forward, ongoing health regeneration restores a wounded frame, and any time-sensitive status rules resolve. All of these simultaneous effects create a complex moment that the rules handle through a singular unified calculation.
+
+> **Simultaneous Health Calculation Rule:** When a single creature undergoes multiple changes to its current Health value at the start of a turn, all positive and negative values consolidate into a single modifier before adjusting the creature's life pool. This prevents the artificial scenario where a creature dies to damage before healing effects can save them.
+
+Consider a battle-worn fighter currently clinging to 2 Health. At the start of their turn, a Burning condition flares, dealing 3 damage. Simultaneously, a Regeneration spell pulses, restoring 2 Health. Rather than processing the damage first and killing the adventurer before the healing can take effect, these values combine: -3 damage and +2 healing equals -1 Health total. The fighter loses a single point and survives the turn initialization with 1 Health remaining, battered but alive.
+
+### Action Execution Phase
+
+Following the resolution of start-of-turn triggers, the character's muscles tense with energy as their maximum <Tooltips.ActionPoints /> allocation floods into them at full strength. From this moment forward, every decision matters. Players spend these precious points to move across the battlefield, strike at enemies, cast devastating spells, or perform tactical maneuvers in any sequence permitted by the system mechanics. A warrior might choose to advance three paces forward and unleash a powerful blow, while a spellcaster might retreat and unleash an area of effect blast. The beauty of this system lies in its flexibility—each turn is a canvas upon which players paint their tactical approach. A turn concludes the moment all AP is exhausted or when the player formally yields any remaining points, passing their window of opportunity to the next creature in initiative order.
+
+<img src="/pictures/actions.webp" alt="Turn action order" className="my-8 px-4 md:mx-auto w-full md:w-1/2" />
+
+### Anatomy of an Action
+
+Every discrete action follows a standardized four-step resolution lifecycle that ensures clarity and maintains dramatic tension throughout combat.
+
+**Declaration Phase:** The acting creature formally announces their intent to execute an action—whether that's a sword strike, a magical spell, a tactical maneuver, or something else entirely. They pay the requisite AP cost from their current pool and designate all valid targets within their action's range. This phase is deliberate and commits the action to memory; once declared, the act cannot be undone.
+
+**Reaction Window:** Before the action resolves into concrete results, opposing or allied creatures can spend their available <Tooltips.Reactions /> to intervene. Perhaps an ally casts a protective shield, an enemy unleashes a counterattack to disrupt the action, or a combatant attempts to dodge away from incoming danger. These reactions inject unpredictability into the resolution and reward careful positioning and tactical awareness.
+
+**Accuracy Assessment:** Once the reaction window closes and no more interruptions are forthcoming, the actor completes any required <Tooltips.AttackRoll />. This value—modified by the creature's relevant attributes and any magical bonuses—determines whether the strike connects with its intended targets or misses them entirely. A natural 20 results in a <Tooltips.CriticalHit />, dramatically amplifying the damage.
+
+**Resolution & Application:** Affected targets roll any necessary <Tooltips.SavingThrow />s dictated by the ability, attempting to mitigate or resist the incoming effect. The system then applies the final calculations for damage, healing values, forced movement, or conditional status changes. All effects settle simultaneously. With everything resolved and the smoke clearing, the action finishes completely, leaving the creature free to spend any remaining AP on their turn.
+
+## Universal Maneuvers
+
+Maneuvers represent foundational physical actions universally understood by seasoned adventurers and ordinary commoners alike. These techniques require no special training or magical power—any creature with sufficient AP can perform them, making them the backbone of battlefield tactics.
+
+### Movement
+
+To traverse the battlefield, characters spend AP to cover distances governed by their current <Tooltips.InnateSpeed />, a value that reflects both their innate physical capability and their training. Standard movement is highly visible and deliberate, with a character openly crossing the ground in view of all. This visibility has consequences: any displacement through space allows nearby hostile entities an opportunity to react or retaliate. An enemy might use their reaction to strike as you pass, or an ally might take the opportunity to intercept. This makes positioning—the careful placement of combatants on the battlefield—a critical strategic element. Warriors must decide: do you circle wide to avoid the enemy's reach, or do you charge directly at the cost of triggering counterattacks?
+
+### Jumping
+
+When facing open chasms, treacherous obstacles, or vertical ledges, a character can choose to execute a jump in a burst of explosive physical effort. This maneuver clears a distance defined by the creature's <Tooltips.PhysicalAttributes />, representing both their raw physical power and their agility. Unlike standard movement, jumping is aerially secure—a character launching themselves into the air cannot be struck in melee or targeted by most reactions, making it a valuable escape tool or means of reaching otherwise inaccessible terrain. However, there is a limitation: a creature can only benefit from this maneuver once per turn, preventing characters from simply bouncing across the entire battlefield in a series of hops.
+
+# Gaining Arts
+
+Arts are combat disciplines that a creature can unlock in two primary ways: long-term class progression and temporary or limited equipment effects. Permanent arts are learned by leveling up in specific classes and represent true mastery gained through training, battle experience, and class identity. Once learned this way, the art becomes part of the creature's core capabilities and can be used whenever its normal requirements are met.
+
+Some arts can also be granted by equipment as <Tooltips.EquippedAbility /> effects. These are not permanently learned and remain available only while that gear is equipped. Equipped arts usually have strict usage limits, such as once per day, twice per battle, or another listed recharge rule. If an item grants an art with limited uses, that limit is tracked separately from the creature's class-based arts.
+
+# Martial Arts
+
+Martial abilities govern physical combat prowess, weapon proficiency, and tactical battlefield techniques. Whether wielding an elegant blade that sings through the air, a polearm that commands distance, a ranged bow that strikes from afar, or utilizing unarmed combat honed through rigorous training, all martial actions exist within carefully defined disciplines. These disciplines are characterized by their speed, their reliance on physical power, and their dependence on accuracy to connect with targets.
+
+Weapon choice shapes a combatant's rhythm on the battlefield. Some arms reward speed and coordination, others deliver steady single strikes, and the heaviest tools of war demand total commitment. A character's class or special training may expand what they can wield, especially for warriors who learn to fight with both hands in tandem.
+
+### Light Weapons
+
+Light weapons are built for quick hands and constant pressure. They are the weapons that make true dual-wielding possible. When a creature wields two <Tooltips.LightWeapon />s, a single weapon attack can be made with both weapons at the same time. The attacker does not choose one weapon and then make a second separate attack later; instead, both weapons strike together as one coordinated action. This gives the wielder more power in the moment of attack, letting them convert one opening into a paired burst of cuts, thrusts, or strikes. This makes light weapons especially valuable for duelists, skirmishers, and any fighter who prefers tempo over brute force. Their damage may be lighter than heavier arms, but their real strength lies in reliability, speed, and the ability to keep an enemy off balance.
+
+### Standard Weapons
+
+Standard weapons represent the common martial baseline. A creature normally attacks with a single <Tooltips.StandardWeapon /> at a time, leaving the other hand free for a shield, spell focus, torch, climbing aid, or similar held item. This flexibility makes standard weapons dependable and easy to pair with many fighting styles. Certain class upgrades or advanced training can expand this limitation, allowing a warrior to dual wield either two standard weapons or a standard weapon alongside a light weapon. These upgrades represent exceptional martial discipline rather than ordinary weapon handling.
+
+### Heavy Weapons
+
+Heavy weapons are oversized instruments of destruction that demand both hands and full attention. A creature can normally equip only one <Tooltips.HeavyWeapon />, and doing so leaves no room for another weapon or shield in the off hand. In exchange, heavy weapons hit with crushing force and often define a fighter's entire battlefield identity. They suit combatants who want each strike to feel decisive, whether through sweeping cleaves, brutal impact, or the ability to threaten a large space with a single committed blow.
+
+### Weapon Properties
+
+Some weapons carry special properties that change which attribute governs their attack rolls. A <Tooltips.Finesse /> weapon uses Dexterity instead of Strength, favoring precision, timing, and refined technique. An <Tooltips.Arcane /> weapon uses Intelligence, blending martial motion with study, formula, and magical calculation. A <Tooltips.Spiritual /> weapon uses Wisdom, drawing accuracy from instinct, discipline, and inner balance. An <Tooltips.Eloquent /> weapon uses Charisma, turning confidence, force of personality, and commanding presence into martial effectiveness. These properties let different classes fight in ways that match their identity rather than forcing every warrior down the same path.
+
+# Venatic Arts
+
+<Tooltips.VenaticArts /> covers ranged weapon combat, where the fighter attacks from a distance by launching projectiles instead of closing into melee. This style is built around spacing, sightlines, and control of the battlefield. A venatic combatant can threaten enemies before they reach the front line, punish exposed targets, and keep pressure on opponents without standing directly beside them.
+
+### Bows
+
+Bows are the fastest and most immediate venatic weapons. A <Tooltips.Bow /> draws and fires in the same action, meaning the weapon is never separately loaded before the shot is made. The draw, aim, and release are one clean motion, which makes bows ideal for repeated attacks and fluid battlefield movement. Their damage usually depends on the type of arrow being used, but a bow may carry its own bonuses or magical properties that overwrite or improve the arrow's normal damage variant.
+
+### Crossbows
+
+Crossbows trade speed for heavier force and greater mechanical commitment. A <Tooltips.Crossbow /> must be preloaded before it can be fired, so the weapon is not always ready in the same way a bow is. Some crossbows automatically reload at the end of the turn, allowing their wielder to prepare the next shot without extra effort. Other crossbows require the wielder to spend an action to reload them manually. Certain crossbows, or certain creatures trained to use them, can hold multiple bolts loaded at once. The exact number depends on the weapon's design, and the wielder's skill can further increase that amount. Their damage is usually determined by the bolt being fired, though crossbows can also carry bonuses or special effects that replace or override the bolt's default damage profile.
+
+### Projectiles
+
+Venatic weapons fire projectiles such as arrows and bolts. In most cases, the projectile type determines the primary damage variant of the attack, while the weapon itself defines the method of delivery. This means a simple arrow can shape the damage profile of a bow shot, and a bolt can shape the damage profile of a crossbow attack. If the weapon has a bonus or special property that specifically replaces the projectile's damage or damage type, that weapon effect takes precedence. This keeps ranged combat flexible without making the rules hard to track.
+
+### Unarmed Combat
+
+Every living entity possesses an inherent baseline understanding of hand-to-hand combat, a primal knowledge written into muscle memory over countless generations. When circumstances strip a combatant of their weapons, they still retain this fundamental skill. A fighter can leverage punches, kicks, elbows, knees, and headbutts to deal damage to their adversaries. While these blunt strikes lack the lethal edge of specialized steel and refined weapons, they provide a reliable option when fighting in tight spaces where larger weapons become unwieldy. Most importantly, unarmed combat is never truly unavailable—a disarmed warrior is far from helpless. Some rare warrior paths, such as those followed by Monks who dedicate their entire lives to martial perfection, elevate this basic survival tool into an art form of devastating elegance. Through years of discipline and training, such masters can make unarmed combat capable of outperforming conventional forged weapons, turning their fists into instruments of legendary power.
+
+### Prepared Attacks
+
+Prepared attacks demand significant heavy commitment, requiring visible build-up and focused concentration over multiple turns rather than resolving instantly. The attacker dedicates their entire physical posture and accumulated momentum toward an impending strike of terrible power, growing increasingly exposed and locked into the action as the attack charges. Enemies can see the danger building and have multiple opportunities to disrupt the preparation through attacks or crowd control effects. However, once fully powered, the technique unleashes devastating force beyond the capability of rapid strikes. These attacks represent crushing overhead cleaves that split armor, legendary martial forms passed down through generations, or techniques that can dramatically alter the tide of an entire battle. The cost is significant—flexibility and responsiveness are sacrificed in favor of sheer power.
+
+# Arcane Arts
+
+Arcane arts encompass supernatural manipulations of reality, energy, and form. Spellcasters breach the boundaries between the possible and impossible, drawing from hidden wells of power that defy natural law. Unlike physical martial techniques that rely on training, strength, and timing, spells tap into raw magical reserves to generate phenomena that should not exist—flames that burn without fuel, barriers that appear from nothingness, or words of power that reshape minds. Magic operates under strict parameters for casting, duration, and manifestation; reckless spellcasters quickly discover that raw power without understanding leads to catastrophe.
+
+### Spellcasting
+
+<Tooltips.Spellcasting /> is determined by a creature's class. Two spellcasters may cast the same spell, but their methods, limits, and costs can be entirely different based on where their power comes from.
+
+Wizards cast through discipline, study, and <Tooltips.ArcaneMemory />. Their spell modifier is based on Intelligence. Because advanced spell formulas place immense strain on the mind, many spells fade from memory once cast and must be re-prepared before they can be used again. Through long training, a wizard can permanently retain basic spell patterns that are treated as <Tooltips.Cantrip />s, allowing those simple effects to remain available without the same memory collapse.
+
+Warlocks cast through borrowed power granted by their patron. They do not rely on memorized formulas in the same way wizards do, but every casting demands a personal price through <Tooltips.LifeCost />. For warlocks, <Tooltips.Cantrip>Cantrips</Tooltips.Cantrip> cost 0 life. For leveled spells, the life cost is that of its level (level 1 arcane art costs 1 life, level 2 costs 2 life, and so on). This makes high-level warlock casting brutally effective but physically dangerous over extended battles.
+
+### Sustained Focus
+
+Certain complex incantations demand unbroken mental strain to remain viable after being cast. Maintaining <Tooltips.Concentration /> represents a constant mental tax that challenges even the most disciplined spellcasters. Persistent magical zones that reshape terrain require active focus, summoned creatures depend on their conjurer's concentration to remain anchored to the world, and ongoing psychic hexes must be continuously reinforced by the caster's will. A caster can only maintain one concentration spell at any given time—attempting to cast another concentration spell causes the first to immediately unravel. Damage and harmful effects can break concentration as well, as does being rendered unable to cast spells or perform actions.
+
+### Spatial Manifestation
+
+Spells designed to target geographical space rather than individuals possess an <Tooltips.AoE /> property that defines an area of effect. These shapes manifest as spheres that burst outward in all directions, precise cones that narrow with distance, perfectly straight lines that bisect the battlefield, or geometric cubes of defined dimensions. Every entity caught inside the defined boundary is targeted simultaneously. Each affected creature independently rolls saving throws and calculates their damage, allowing some to resist or mitigate the effect while others fall fully under its power.
+
+### Splintered Targets
+
+Advanced offensive magic often utilizes a <Tooltips.MultiTarget /> structure of devastating efficiency. These spells generate independent projectiles, beams of energy, or magical strikes during a single casting sequence. The caster exercises control over these multiplied attacks, choosing to disperse the projectiles among multiple foes to maximize coverage or concentrate them onto a single target for staggering impact. Each projectile functions as an independent hit, meaning defensive shields, damage reduction abilities, and elemental resistances apply separately to every missile. An enemy with a spell that reduces fire damage must resist the effect for each individual bolt of fire striking them.
+
+### Magical Alterations
+
+Spells frequently modify creature attributes and characteristics rather than dealing direct damage. Casting a <Tooltips.Buff /> weaves enhancement magic around a target, amplifying their strength, sharpening their senses, or reinforcing their  . Conversely, a <Tooltips.Debuff /> actively cripples an enemy by weakening their physical capabilities, clouding their judgment, or hampering their movement. These magical effects modify dice rolls, grant entirely new abilities, or impose debilitating status conditions. Multiple unique buffs and debuffs can influence a single creature simultaneously, each one functioning as an independent magical layer that stacks with the others.
+
+### Channeled Invocations
+
+Spells carrying the <Tooltips.Ritual /> property represent massive magical workings of titanic scope that cannot be rushed or compressed. These spells require sustained AP investment across multiple sequential rounds as the caster pours raw power into their manifestation. Instead of flashing into existence with a single declaration, a ritual stays active only as long as the caster continues to channel AP into it at the start of each turn. Abandon the channeling, and the spell immediately collapses into failure. Some rituals provide minor escalating boons and effects during the channeling phase, allowing allies to benefit from growing magical power. Others function as power reservoirs that accumulate force across multiple turns before exploding into devastating completion. While rituals possess a unique advantage—they bypass standard counterspells once initiated—the extended casting process leaves the channeler extraordinarily vulnerable. A caster locked in ritual channeling cannot move, can only defend themselves through reactions, and presents an obvious, defenseless target to any enemy.
+
+
+<AttributeTable>
+
+# Character Attributes
+
+An attribute score quantifies a creature's raw genetic potential, innate talent, and the formal training they've invested in refining their natural gifts. Every adventurer possesses six core attributes that define their fundamental capabilities across all aspects of challenge and conflict.
+
+### Understanding the Scores
+
+An ordinary civilian—a farmer, a merchant, a common laborer—averages a score of 10 or 11 across their attributes, representing the baseline of unremarkable humanity. Heroes and exceptional monsters consistently exceed this baseline, their exceptional potential visible in every movement. A score of 18 marks the traditional peak of mortal capability—the achievement of legendary warriors, cunning masterminds, or innately gifted prodigies. Veteran adventurers who have honed themselves through countless trials can push their attributes to a maximum of 20, representing mortals who have transcended ordinary limits. However, monstrous entities that defy natural law, ancient dragons who have lived for millennia, and divine beings touched by the gods routinely break these mortal boundaries, reaching scores of 30 or higher. These beings occupy an entirely different tier of power.
+
+### Calculating Modifiers
+
+Every attribute score generates a corresponding modifier used to scale mechanical rolls and determine how much of that innate power a character can apply to their actions. The final modifier value is determined using the following mathematical equation:
+
+> Modifier = floor((Score - 10) / 2)
+
+Whenever a rule demands an attribute check, an attack roll, or a saving throw, the player rolls a twenty-sided die (d20) and adds this calculated modifier to the result. This marriage of randomness and capability reflects reality—even highly skilled individuals experience variance in their performance, but superior training and ability provide consistent advantages. The total sum is checked against a target difficulty class or opposed against an enemy's roll to evaluate success or failure.
+
+</AttributeTable>
+
+
+# Attribute Checks
+
+An attribute check evaluates a character's core talents and practical experience when confronting a non-combat obstacle or challenge. Climbing a crumbling cliff face, resisting a magical charm, persuading a suspicious guard, deciphering ancient runes, or tracking a hidden enemy through the forest—all of these situations call for attribute checks. The DM calls for an attribute check whenever an action carries a legitimate risk of failure and the outcome remains genuinely uncertain. There's no point rolling if success is automatic or failure is inevitable.
+
+During a check, the DM identifies which of the six core attributes applies to the challenge based on the nature of the task. A check requiring raw physical strength differs from one demanding mental acuity or social grace. The DM then establishes a numeric Difficulty Class (DC) reflecting the challenge's difficulty—trivial tasks might have a DC of 8, while legendary feats require DC 20 or higher. The player rolls a d20, adds their chosen attribute modifier, and compares the final total against the DC. Achieving or exceeding the target value results in a success, with the character overcoming the obstacle or accomplishing the intended goal. Failing to meet the DC results in a failure, with consequences ranging from minor setbacks to serious complications.
+
+## Advantage & Disadvantage
+
+Exceptional circumstances, superior positioning, magical blessings, or debilitating curses can grant a character a significant edge or saddle them with a severe burden during critical rolls. These modifiers represent fate itself conspiring with or against the adventurer.
+
+Receiving <Tooltips.Advantage /> represents circumstances favoring your success. You roll a second d20 alongside your primary roll and take the higher of the two results, statistically increasing your chance of success. Conversely, suffering <Tooltips.Disadvantage /> represents circumstances conspiring against you—hostility from fate itself. You roll a second d20 and are forced to utilize the lower result, dramatically decreasing your odds of success. Regardless of how many separate sources are influencing a single roll, you never roll more than one additional d20. A character cannot gain multiple advantages or disadvantages; instead, each additional source adds narrative weight but mechanically results in the same pair of d20s.
+
+If a roll simultaneously qualifies for both Advantage and Disadvantage through conflicting sources, the states completely neutralize one another. The roll reverts to a standard, unmodified single d20 roll as if neither modifier existed. This mutual cancellation principle applies even if a character has multiple separate sources of Disadvantage countered by only a single source of Advantage; fate's scales balance, and the result is neutral uncertainty.
+
+When an external feature or racial trait grants a player the ability to reroll a d20 while already rolling with Advantage or Disadvantage, the reroll can only modify one of the two dice. The player must select which die to replace, choosing whether to improve their upper roll or change the die they were forced to use.
+
+## Contests
+
+A <Tooltips.Contest /> occurs whenever two creatures actively oppose one another's physical or mental efforts with mutually exclusive goals. When an armored knight attempts to shove aside a wizard blocking their path while the wizard plants their feet firmly in resistance, a contest ensues. When two adventurers compete to climb a crumbling rope or arm-wrestle for dominance, they engage in a contest. These situations cannot be resolved by simple DCs because the difficulty shifts based on the opposing effort.
+
+Instead of rolling against a static DC set by the environment, both participants roll an attribute check corresponding to their respective actions. Each side applies their relevant modifiers, bonuses, and penalties from abilities, magic, or circumstances. They then compare their grand totals directly; the participant who rolled the highest value succeeds completely in their effort. The loser fails to accomplish their goal and typically faces consequences dictated by the situation. Ties result in a standstill—neither side succeeds fully, and the situation remains locked in a contest of wills.
+
+# Health & Death Row
+
+Health is the measure of a creature's remaining ability to endure injury, stress, and magical strain. When a character has Health remaining, they can keep fighting, casting, and moving through the world as normal. When damage reduces Health, the creature moves closer to collapse; when healing restores it, the creature regains the ability to continue.
+
+Bonus Health represents extra protection, vitality, or magical padding granted by arts, equipment, or other effects. Bonus Health from multiple sources does not stack with itself. If several effects try to grant bonus Health at the same time, only the strongest applicable source is used unless a specific rule says otherwise. Even when the bonus value itself does not stack, the arts or abilities that granted it remain active as long as their conditions are still met.
+
+When a creature reaches 0 HP, it falls unconscious and drops to the ground. It is no longer able to act normally and is instead clinging to life in a unconscious state. At the start of each of its turns while at 0 HP, the creature rolls a d20. If the result is even, the creature survives and remains at 0 HP. If the result is odd, the creature gains 1 Death Row. When a creature reaches 3 Death Row stacks, it dies. Death row stacks are persistant in-between fights and can be decreased or mitigated using certain spells or items. Whenever does creature have long rest, erases all gained Death Row stacks. 
+
+Death Row is a measure of how close a fallen creature is to final defeat. It tracks the strain of repeated failure at the edge of death, making every turn at 0 HP more dangerous than the last. Healing, stabilization, or any effect that restores the creature above 0 HP removes the immediate threat of Death Row and returns the creature to active play.

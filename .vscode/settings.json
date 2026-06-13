@@ -13,7 +13,6 @@
     "**/mdx.d.ts": true
   },
   "editor.defaultFormatter": "biomejs.biome",
-  "js/ts.experimental.useTsgo": true,
   "biome.enabled": true,
   "files.associations": {
     "*.css": "tailwindcss",
@@ -34,11 +33,12 @@
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-containers"
   },
-  "cSpell.words": ["bunx", "unrs", "oklch"],
-  "cSpell.diagnosticLevel": "Warning",
   "[mdx]": {
     "editor.defaultFormatter": "unifiedjs.vscode-mdx",
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 120
-  }
+  },
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.experimental.useTsgo": false
 }

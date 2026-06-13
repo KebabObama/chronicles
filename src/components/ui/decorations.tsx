@@ -12,8 +12,8 @@ export const Underline = ({
       role="presentation"
       className={cn(
         "absolute top-full left-1/2 h-px -translate-x-1/2 rounded",
-        "motion-safe:transition-all duration-500 ease-out z-10",
-        "group-hover/underline:translate-y-0.75 ",
+        "motion-safe:transition-all duration-500 ease-out z-39",
+        "group-hover/underline:translate-y-0.75",
         "from-muted-foreground from-40% via-background to-muted-foreground to-60% bg-linear-to-r",
         variant === "shrinking" && "w-full group-hover/underline:w-0",
         variant === "growing" &&
@@ -34,7 +34,7 @@ export const Arrow = ({
   return (
     <svg
       className={cn(
-        "size-2 absolute top-[calc(100%-0.25rem)] z-20 left-1/2 -translate-x-1/2  motion-safe:transition-all duration-400 ease-out",
+        "size-2 absolute top-[calc(100%-0.25rem)] z-41 left-1/2 -translate-x-1/2  motion-safe:transition-all duration-400 ease-out",
         "group-hover/arrow:text-red-400 group-hover/arrow:translate-y-0.5 group-hover/arrow:size-3",
         className,
       )}

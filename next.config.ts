@@ -9,7 +9,7 @@ const prod = process.env.NODE_ENV === "production";
 const nextConfig: NextConfig = {
   reactCompiler: true,
   reactStrictMode: true,
-  compiler: { removeConsole: true },
+  compiler: { removeConsole: prod },
   output: "export",
 
   env: { NEXT_PUBLIC_BASE_PATH: process.env.BASE_PATH },
