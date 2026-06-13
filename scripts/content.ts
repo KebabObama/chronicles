@@ -117,5 +117,5 @@ export const buildSearchIndex = async () => {
 };
 
 if (import.meta.main) {
-  await buildSearchIndex();
+  void buildSearchIndex();
 }

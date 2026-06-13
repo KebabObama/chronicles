@@ -1,8 +1,5 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
-import { buildSearchIndex } from "./scripts/content";
-
-buildSearchIndex();
 
 const prod = process.env.NODE_ENV === "production";
 
