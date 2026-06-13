@@ -3,7 +3,7 @@ import { buildSearchIndex } from "./content";
 
 let timeout: NodeJS.Timeout | undefined;
 
-const watcher = watch("src/content", { recursive: true }, (event, filename) => {
+const watcher = watch("src/app", { recursive: true }, (event, filename) => {
   clearTimeout(timeout);
 
   timeout = setTimeout(async () => {

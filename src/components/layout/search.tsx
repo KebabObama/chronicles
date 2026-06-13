@@ -21,47 +21,27 @@ export const Search = ({ children }: { children: React.ReactNode }) => {
       setItems(await getSearchIndex());
     })();
 
-    setHistory((JSON.parse(localStorage.getItem(HISTORY_KEY) ?? "[]") as string[]).slice(0, 3));
+    setHistory(JSON.parse(localStorage.getItem(HISTORY_KEY) ?? "[]").slice(0, 3));
 
     const handle = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === "k") {
-        e.preventDefault();
-        dialogRef.current?.togglePopover();
-      }
-
-      if (e.key === "/") {
+      if ((e.ctrlKey && e.key === "k") || e.key === "/") {
         e.preventDefault();
         dialogRef.current?.togglePopover();
       }
     };
 
-    window.addEventListener("keydown", handle);
-    return () => window.removeEventListener("keydown", handle);
+    addEventListener("keydown", handle);
+    return () => removeEventListener("keydown", handle);
   }, []);
 
   const addToHistory = (id: string) => {
     const next = [id, ...history.filter((x) => x !== id)].slice(0, 3);
-
     setHistory(next);
     localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
   };
 
   const filtered = useMemo(() => {
     const value = query.trim().toLowerCase();
-
-    if (!value) {
-      return [...items]
-        .sort((a, b) => {
-          const ai = history.indexOf(a.id);
-          const bi = history.indexOf(b.id);
-          if (ai === -1 && bi === -1) return 0;
-          if (ai === -1) return 1;
-          if (bi === -1) return -1;
-          return ai - bi;
-        })
-        .slice(0, 5);
-    }
-
     return items
       .map((item) => {
         const title = item.title.toLowerCase();

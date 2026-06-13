@@ -27,7 +27,7 @@ export default ({ children }: Readonly<{ children: React.ReactNode }>) => {
       suppressHydrationWarning
       data-scroll-behavior="smooth"
       className={cn("h-full antialiased", dragonHunter.variable)}>
-      <body className="relative bg-background text-foreground overflow-x-hidden">
+      <body className="relative bg-background text-foreground overflow-x-hidden overflow-y-scroll">
         <Navbar />
         <div className="pointer-events-none fixed top-0 left-0 right-0 h-32 z-43 backdrop-blur-3xl mask-linear-to-black mask-linear-from-transparent" />
         <div className="pointer-events-none fixed top-0 left-0 right-0 h-32 z-44 bg-linear-to-t to-background to-90% from-transparent" />
