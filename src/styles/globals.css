@@ -31,7 +31,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 box-border scroll-smooth;
+    @apply border-border outline-ring/50 box-border;
   }
 
   button,

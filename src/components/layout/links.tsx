@@ -1,11 +1,10 @@
-import type { Route } from "next";
-import Link from "next/link";
 import type { IconType } from "react-icons";
 import { GiCampingTent, GiMagicSwirl, GiPortrait, GiScales, GiSwitchWeapon } from "react-icons/gi";
 import { NavButton } from "@/components/ui/nav-button";
+import { Link } from "@/i18n/navigation";
 
 type LinkedUrl = {
-  href: Route;
+  href: string;
   label: string;
   Icon: IconType;
   sub?: Array<string>;

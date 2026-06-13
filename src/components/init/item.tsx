@@ -1,6 +1,5 @@
-import type { Route } from "next";
-import Link from "next/link";
 import { FantasyButton, type FantasyVariant } from "@/components/ui/fantasy-button";
+import { Link } from "@/i18n/navigation";
 
 export const Item = ({
   label,
@@ -9,7 +8,7 @@ export const Item = ({
   variant,
 }: {
   label: string;
-  link: Route;
+  link: string;
   children: React.ReactNode;
   variant?: FantasyVariant;
 }) => {

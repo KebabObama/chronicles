@@ -2,6 +2,8 @@ import { Item } from "@/components/init/item";
 import { Landing } from "@/components/init/landing";
 import { ScrollDown } from "@/components/init/scroll-down";
 
+export const dynamic = "force-static";
+
 export default () => {
   return (
     <>

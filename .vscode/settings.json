@@ -5,12 +5,11 @@
     "**/.git": true,
     "**/.next": true,
     "**/node_modules/": true,
-    "**/next-env.d.ts": true,
+    "**/*.d.ts": true,
     "**/bun.lock": true,
     "**/tsconfig.tsbuildinfo": true,
     "**/components.json": true,
-    "**/.gitkeep": true,
-    "**/mdx.d.ts": true
+    "**/.gitkeep": true
   },
   "editor.defaultFormatter": "biomejs.biome",
   "biome.enabled": true,
