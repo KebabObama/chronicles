@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export type FantasyVariant = "ice" | "blood" | "emerald" | "steel";
 
 const buttonVariants = cva(
-  "group relative inline-flex items-center justify-center bg-transparent cursor-pointer select-none outline-none transition-transform duration-200 active:scale-97 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100",
+  "group relative inline-flex cursor-pointer select-none items-center justify-center bg-transparent outline-none transition-transform duration-200 active:scale-97 disabled:pointer-events-none disabled:cursor-not-allowed disabled:active:scale-100",
   {
     variants: {
       size: {
@@ -20,13 +20,13 @@ const buttonVariants = cva(
 );
 
 const textVariants = cva(
-  "relative z-20 font-serif text-[#f0f7ff] transition-all duration-300 drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)] group-hover:text-[#ffffff] group-hover:scale-102",
+  "relative z-20 font-serif text-[#f0f7ff] drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover:scale-102 group-hover:text-[#ffffff]",
   {
     variants: {
       size: {
-        sm: "text-lg tracking-[0.2em] pl-[0.2em]",
-        md: "text-xl tracking-[0.25em] pl-[0.25em]",
-        lg: "text-2xl tracking-[0.3em] pl-[0.3em]",
+        sm: "pl-[0.2em] text-lg tracking-[0.2em]",
+        md: "pl-[0.25em] text-xl tracking-[0.25em]",
+        lg: "pl-[0.3em] text-2xl tracking-[0.3em]",
       },
       variant: {
         ice: "group-hover:drop-shadow-[0_0_8px_rgba(154,208,255,0.6)]",
@@ -271,9 +271,9 @@ export const FantasyButton = ({
   return (
     <button disabled={disabled} className={cn(buttonVariants({ size, className }))} {...props}>
       {/* BACKGROUND & INNER FRAME LAYER */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 z-0">
         <svg
-          className="w-full h-full drop-shadow-[0_8px_16px_rgba(0,0,0,0.8)]"
+          className="h-full w-full drop-shadow-[0_8px_16px_rgba(0,0,0,0.8)]"
           viewBox="0 0 384 112"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -338,7 +338,7 @@ export const FantasyButton = ({
             rx="16"
             stroke={themeColors.innerStroke}
             strokeWidth="1"
-            className="transition-opacity duration-500 opacity-40 group-hover:opacity-70"
+            className="opacity-40 transition-opacity duration-500 group-hover:opacity-70"
           />
           <rect
             x="26"
@@ -349,19 +349,19 @@ export const FantasyButton = ({
             stroke={themeColors.energyStroke}
             strokeWidth="1.5"
             className={cn(
-              `opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none energy-line-${variant}`,
+              `pointer-events-none opacity-0 transition-opacity duration-500 group-hover:opacity-20 energy-line-${variant}`,
             )}
           />
 
           {size !== "sm" && (
             <g className={cn(runeVariants({ variant }), disabled && disabledRuneColors[variant])}>
               {/* Core Runes */}
-              <g className="transition-opacity opacity-10 group-hover:opacity-100 rune-flicker-A">
+              <g className="rune-flicker-A opacity-10 transition-opacity group-hover:opacity-100">
                 <path d="M48 42 L56 42 M52 36 L52 48 M48 48 L56 36" stroke="currentColor" strokeWidth="1.5" />
                 <path d="M68 38 L74 44 L68 50 M74 38 L74 50" stroke="currentColor" strokeWidth="1.5" fill="none" />
               </g>
 
-              <g className="transition-opacity opacity-10 group-hover:opacity-100 rune-flicker-C">
+              <g className="rune-flicker-C opacity-10 transition-opacity group-hover:opacity-100">
                 <path d="M312 38 L318 44 L312 50 M312 44 H322" stroke="currentColor" strokeWidth="1.5" fill="none" />
                 <path d="M332 36 V48 L338 42 Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
               </g>
@@ -369,11 +369,11 @@ export const FantasyButton = ({
               {/* Extra Runes */}
               {size === "lg" && (
                 <>
-                  <g className="transition-opacity opacity-10 group-hover:opacity-100 rune-flicker-B">
+                  <g className="rune-flicker-B opacity-10 transition-opacity group-hover:opacity-100">
                     <path d="M90 38 H102 L90 50 H102 Z" stroke="currentColor" strokeWidth="1.2" fill="none" />
                     <path d="M58 64 L64 72 L70 64 M64 72 V58" stroke="currentColor" strokeWidth="1.5" fill="none" />
                   </g>
-                  <g className="transition-opacity opacity-10 group-hover:opacity-100 rune-flicker-B">
+                  <g className="rune-flicker-B opacity-10 transition-opacity group-hover:opacity-100">
                     <path
                       d="M284 38 V50 M284 44 L292 38 M284 47 L292 41"
                       stroke="currentColor"
@@ -388,10 +388,10 @@ export const FantasyButton = ({
                     />
                   </g>
 
-                  <g className="transition-opacity opacity-10 group-hover:opacity-100 rune-flicker-A">
+                  <g className="rune-flicker-A opacity-10 transition-opacity group-hover:opacity-100">
                     <path d="M86 68 L94 68 L90 76 Z M90 64 V68" stroke="currentColor" strokeWidth="1.3" fill="none" />
                   </g>
-                  <g className="transition-opacity opacity-10 group-hover:opacity-100 rune-flicker-C">
+                  <g className="rune-flicker-C opacity-10 transition-opacity group-hover:opacity-100">
                     <path
                       d="M290 58 L298 66 M298 58 L290 66 M294 54 V68"
                       stroke="currentColor"
@@ -413,9 +413,9 @@ export const FantasyButton = ({
       </div>
 
       {/* FOREGROUND LAYER: SHARDS */}
-      <div className="absolute inset-0 z-10 overflow-visible pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 z-10 overflow-visible">
         <svg
-          className="w-full h-full"
+          className="h-full w-full"
           viewBox="0 0 384 112"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -436,7 +436,7 @@ export const FantasyButton = ({
             className={cn("origin-bottom", centerHoverVariants({ variant }))}
           />
 
-          <g className="origin-[32px_28px] transition-transform duration-300 ease-out group-hover:scale-115 group-hover:-rotate-3">
+          <g className="origin-[32px_28px] transition-transform duration-300 ease-out group-hover:-rotate-3 group-hover:scale-115">
             <path
               d="M14 30 L32 12 L44 20 L26 26 L36 46 L22 38 Z"
               fill={themeColors.shardFill}
@@ -454,7 +454,7 @@ export const FantasyButton = ({
             <path d="M14 30 L6 20 L20 24 Z" fill={themeColors.accentFill} opacity="0.9" />
           </g>
 
-          <g className="origin-[352px_28px] transition-transform duration-300 ease-out group-hover:scale-115 group-hover:rotate-3">
+          <g className="origin-[352px_28px] transition-transform duration-300 ease-out group-hover:rotate-3 group-hover:scale-115">
             <path
               d="M370 30 L352 12 L340 20 L358 26 L348 46 L362 38 Z"
               fill={themeColors.shardFill}
@@ -472,7 +472,7 @@ export const FantasyButton = ({
             <path d="M370 30 L378 20 L364 24 Z" fill={themeColors.accentFill} opacity="0.9" />
           </g>
 
-          <g className="origin-[32px_84px] transition-transform duration-300 ease-out group-hover:scale-115 group-hover:rotate-3">
+          <g className="origin-[32px_84px] transition-transform duration-300 ease-out group-hover:rotate-3 group-hover:scale-115">
             <path
               d="M14 82 L32 100 L44 92 L26 86 L36 66 L22 74 Z"
               fill={themeColors.shardFill}
@@ -490,7 +490,7 @@ export const FantasyButton = ({
             <path d="M14 82 L6 92 L20 88 Z" fill={themeColors.accentFill} opacity="0.9" />
           </g>
 
-          <g className="origin-[352px_84px] transition-transform duration-300 ease-out group-hover:scale-115 group-hover:-rotate-3">
+          <g className="origin-[352px_84px] transition-transform duration-300 ease-out group-hover:-rotate-3 group-hover:scale-115">
             <path
               d="M370 82 L352 100 L340 92 L358 86 L348 66 L362 74 Z"
               fill={themeColors.shardFill}

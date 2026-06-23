@@ -14,19 +14,19 @@ export const Navbar = () => {
       className="sticky top-0 z-50 flex h-16 w-full items-center justify-between gap-4 bg-transparent px-4 lg:px-6">
       <Link href="/" className="group/button group/arrow group/underline hidden lg:block">
         <NavButton>
-          <span className="block first-letter:text-3xl text-2xl">{appName}</span>
+          <span className="block text-2xl first-letter:text-3xl">{appName}</span>
         </NavButton>
       </Link>
       <Sidebar>
         <Links />
       </Sidebar>
-      <header className="hidden items-center justify-center lg:justify-end w-full gap-6 lg:gap-2 md:flex">
+      <header className="hidden w-full items-center justify-center gap-6 md:flex lg:justify-end lg:gap-2">
         <Links />
         <Search>
           <button
             type="button"
-            className="flex items-center text-lg gap-2 z-5 group/button group/arrow group/underline">
-            <GiArchiveResearch className="size-5 translate-x-full hidden lg:block opacity-0 group-hover/button:opacity-100 group-hover/button:translate-x-0 duration-300 transition-all" />
+            className="group/button group/arrow group/underline z-5 flex items-center gap-2 text-lg">
+            <GiArchiveResearch className="hidden size-5 translate-x-full opacity-0 transition-all duration-300 group-hover/button:translate-x-0 group-hover/button:opacity-100 lg:block" />
             <NavButton className="text-foreground lg:text-muted-foreground">Search</NavButton>
           </button>
         </Search>

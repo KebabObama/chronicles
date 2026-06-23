@@ -9,7 +9,7 @@ export default () => {
 
       <section
         id="items"
-        className="scroll-mt-[25dvh] grid animate-zoom-in animate-range-entry timeline-view grid-cols-1 xl:grid-cols-3 gap-6">
+        className="timeline-view grid animate-range-entry animate-zoom-in scroll-mt-[25dvh] grid-cols-1 gap-6 xl:grid-cols-3">
         <Item link="/items#weapons" label="Inspect weapons" variant="blood">
           <h1>Weapons</h1>
           In the hands of a true hero, a weapon is more than just a tool of destruction—it is an extension of their arm,

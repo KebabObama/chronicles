@@ -14,13 +14,9 @@ export const Item = ({
   variant?: FantasyVariant;
 }) => {
   return (
-    <article
-      className="bg-card text-card-foreground border shadow-lg px-8 py-4 first:text-center
-  corner-scoop rounded-4xl xl:border-transparent [&_h1]:font-dragon-hunter [&_h1]:sm:text-3xl [&_h1]:text-2xl text-center [&_h1]:tracking-widest
-  block h-full transition-all ease-in timeline-view animate-fade-in animate-range-entry
-  duration-300 xl:hover:border-border ring-border ring-2">
+    <article className="corner-scoop timeline-view block h-full animate-fade-in animate-range-entry rounded-4xl border bg-card px-8 py-4 text-center text-card-foreground shadow-lg ring-2 ring-border transition-all duration-300 ease-in first:text-center xl:border-transparent xl:hover:border-border [&_h1]:font-dragon-hunter [&_h1]:text-2xl [&_h1]:tracking-widest [&_h1]:sm:text-3xl">
       {children}
-      <Link href={link} className="flex flex-row w-full items-center justify-center mt-auto">
+      <Link href={link} className="mt-auto flex w-full flex-row items-center justify-center">
         <FantasyButton variant={variant} size="lg">
           {label}
         </FantasyButton>

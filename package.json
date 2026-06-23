@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "bunx serve@latest out",
-    "lint": "biome check --write"
+    "format": "biome check --write",
+    "lint": "biome check --write --unsafe"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -37,12 +38,6 @@
     "tailwindcss": "^4.3.1",
     "typescript": "^6.0.3"
   },
-  "ignoreScripts": [
-    "sharp",
-    "unrs-resolver"
-  ],
-  "trustedDependencies": [
-    "sharp",
-    "unrs-resolver"
-  ]
+  "ignoreScripts": ["sharp", "unrs-resolver"],
+  "trustedDependencies": ["sharp", "unrs-resolver"]
 }

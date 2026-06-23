@@ -38,7 +38,9 @@
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 120
   },
-  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
-  "js/ts.tsdk.path": "node_modules/typescript/lib",
-  "js/ts.experimental.useTsgo": false
+  "js/ts.experimental.useTsgo": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  }
 }

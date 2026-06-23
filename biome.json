@@ -19,7 +19,26 @@
     "attributePosition": "auto",
     "expand": "auto"
   },
+  "linter": {
+    "enabled": true,
+    "domains": {
+      "next": "recommended",
+      "react": "recommended"
+    },
+    "rules": {
+      "nursery": {
+        "useSortedClasses": {
+          "level": "info",
+          "options": {
+            "attributes": ["classList", "*class*", "*Class*"],
+            "functions": ["clsx", "cva", "tw", "tw.*", "cs"]
+          }
+        }
+      }
+    }
+  },
   "assist": {
+    "enabled": true,
     "actions": {
       "source": {
         "organizeImports": "on"

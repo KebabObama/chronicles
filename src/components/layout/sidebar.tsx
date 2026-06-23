@@ -50,13 +50,13 @@ export const Sidebar = ({ children }: { children?: React.ReactNode }) => {
         ref={dialogRef}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
-        className="sm:rounded-l-none touch-pan-y sm:inset-auto open:flex flex-col h-[calc(100%-1.25rem)] w-[calc(100%-1.25rem)] items-center max-w-none sm:w-auto text-center md:open:hidden sm:min-w-xs sm:top-0 sm:left-0 sm:bottom-0">
+        className="h-[calc(100%-1.25rem)] w-[calc(100%-1.25rem)] max-w-none touch-pan-y flex-col items-center text-center open:flex sm:inset-auto sm:top-0 sm:bottom-0 sm:left-0 sm:w-auto sm:min-w-xs sm:rounded-l-none md:open:hidden">
         {children}
         <Search>
           <button
             type="button"
-            className="flex items-center text-lg gap-2 z-5 group/button group/arrow group/underline cursor-pointer mt-auto">
-            <GiArchiveResearch className="size-5 translate-x-full hidden lg:block opacity-0 group-hover/button:opacity-100 group-hover/button:translate-x-0 duration-300 transition-all" />
+            className="group/button group/arrow group/underline z-5 mt-auto flex cursor-pointer items-center gap-2 text-lg">
+            <GiArchiveResearch className="hidden size-5 translate-x-full opacity-0 transition-all duration-300 group-hover/button:translate-x-0 group-hover/button:opacity-100 lg:block" />
             <NavButton className="text-foreground lg:text-muted-foreground">Search</NavButton>
           </button>
         </Search>

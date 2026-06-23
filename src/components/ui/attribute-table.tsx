@@ -36,22 +36,22 @@ export const ATTRIBUTE_ICONS: Record<Atrribute, IconType> = {
 
 export const AttributeTable = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="container flex flex-col lg:flex-row gap-4 justify-center items-center w-full">
+    <div className="container flex w-full flex-col items-center justify-center gap-4 lg:flex-row">
       <section className="grow">{children}</section>
-      <section className="w-full lg:max-w-3xs lg:min-w-54 flex flex-col gap-4">
-        <div className="flex flex-row ml-5 lg:ml-0 lg:self-center">
-          <div className="rotate-270 -mr-24 font-dragon-hunter text-lg tracking-widest ml-2">Attributes</div>
+      <section className="flex w-full flex-col gap-4 lg:min-w-54 lg:max-w-3xs">
+        <div className="ml-5 flex flex-row lg:ml-0 lg:self-center">
+          <div className="-mr-24 ml-2 rotate-270 font-dragon-hunter text-lg tracking-widest">Attributes</div>
           <ul>
             {Object.entries(ATTRIBUTE_ICONS).map(([key, Icon]) => (
-              <li key={key} className="flex flex-row gap-2 items-center tracking-widest capitalize">
+              <li key={key} className="flex flex-row items-center gap-2 capitalize tracking-widest">
                 <Icon className="size-4" />
                 {key}
               </li>
             ))}
           </ul>
         </div>
-        <table className="w-full text-center tracking-wide rounded-2xl overflow-hidden corner-scoop">
-          <thead className="bg-muted font-dragon-hunter font-extralight border-2 h-8">
+        <table className="corner-scoop w-full overflow-hidden rounded-2xl text-center tracking-wide">
+          <thead className="h-8 border-2 bg-muted font-dragon-hunter font-extralight">
             <tr>
               <th className="p-2">Score</th>
               <th className="p-2">Mod</th>
@@ -60,12 +60,12 @@ export const AttributeTable = ({ children }: { children: React.ReactNode }) => {
           <tbody className="border-2">
             {ATTRIBUTE_TABLE.map(([score, mod]) => (
               <tr key={score}>
-                <td className="border-b px-2 border-r py-1">{score}</td>
+                <td className="border-r border-b px-2 py-1">{score}</td>
                 <td className="border-b px-2 py-1"> {mod}</td>
               </tr>
             ))}
           </tbody>
-          <tfoot className="h-8 w-full bg-muted font-dragon-hunter text-center font-extralight">
+          <tfoot className="h-8 w-full bg-muted text-center font-dragon-hunter font-extralight">
             <tr>
               <td colSpan={2} className="p-2">
                 Table of attributes

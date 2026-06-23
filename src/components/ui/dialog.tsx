@@ -41,8 +41,8 @@ const Content = ({ children, className, ...props }: DialogContent) => {
       {...props}
       popover="auto"
       className={cn(
-        "fixed hidden inset-auto inset-x-0 sm:inset-0 z-50 max-h-[calc(100dvh-2rem)] min-h-40 m-auto open:block w-[calc(100%-1rem)] top-4 sm:max-w-lg gap-4 border rounded-3xl text-foreground bg-card p-8 shadow-lg h-fit",
-        "fade-in-0 zoom-in-95 duration-200 corner-scoop select-none",
+        "fixed inset-auto inset-x-0 top-4 z-50 m-auto hidden h-fit max-h-[calc(100dvh-2rem)] min-h-40 w-[calc(100%-1rem)] gap-4 rounded-3xl border bg-card p-8 text-foreground shadow-lg open:block sm:inset-0 sm:max-w-lg",
+        "fade-in-0 zoom-in-95 corner-scoop select-none duration-200",
         "overflow-visible backdrop:bg-muted/60 backdrop:backdrop-blur-sm",
         className,
       )}>

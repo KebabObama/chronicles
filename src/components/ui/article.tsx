@@ -14,8 +14,8 @@ export type ArticleProps = {
 const headerVariants = cva("tracking-widest underline", {
   variants: {
     heading: {
-      h1: "text-3xl md:text-4xl font-dragon-hunter underline-offset-6",
-      h2: "font-light text-2xl font-dragon-hunter underline-offset-4",
+      h1: "font-dragon-hunter text-3xl underline-offset-6 md:text-4xl",
+      h2: "font-dragon-hunter font-light text-2xl underline-offset-4",
       h3: "font-semibold text-xl",
     },
   },

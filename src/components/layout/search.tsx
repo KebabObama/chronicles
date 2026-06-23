@@ -66,7 +66,7 @@ export const Search = ({ children }: { children: React.ReactNode }) => {
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
       <Dialog.Content className="min-h-82 space-y-4" ref={dialogRef}>
-        <h1 className="text-xl font-light font-dragon-hunter">Search articles</h1>
+        <h1 className="font-dragon-hunter font-light text-xl">Search articles</h1>
 
         <div className="relative w-full">
           <input
@@ -89,12 +89,12 @@ export const Search = ({ children }: { children: React.ReactNode }) => {
               key={item.id}
               href={item.url as Route}
               onClick={() => addToHistory(item.id)}
-              className="group/select hover:bg-muted/20 relative flex flex-col px-2 py-0.5 text-start">
+              className="group/select relative flex flex-col px-2 py-0.5 text-start hover:bg-muted/20">
               <p className="font-semibold">{item.title}</p>
               <p className="text-muted-foreground text-xs">{item.url}</p>
 
               {history.includes(item.id) && (
-                <GiClockwork className="text-muted-foreground group-hover/select:text-foreground group-focus/select:text-foreground absolute top-1/2 right-4 -translate-y-1/2" />
+                <GiClockwork className="absolute top-1/2 right-4 -translate-y-1/2 text-muted-foreground group-hover/select:text-foreground group-focus/select:text-foreground" />
               )}
             </Link>
           ))}

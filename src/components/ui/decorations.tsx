@@ -12,12 +12,12 @@ export const Underline = ({
       role="presentation"
       className={cn(
         "absolute top-full left-1/2 h-px -translate-x-1/2 rounded",
-        "motion-safe:transition-all duration-500 ease-out z-39",
+        "z-39 duration-500 ease-out motion-safe:transition-all",
         "group-hover/underline:translate-y-0.75",
-        "from-muted-foreground from-40% via-background to-muted-foreground to-60% bg-linear-to-r",
+        "bg-linear-to-r from-40% from-muted-foreground via-background to-60% to-muted-foreground",
         variant === "shrinking" && "w-full group-hover/underline:w-0",
         variant === "growing" &&
-          "w-6 group-hover/underline:w-full from-20% to-80% group-hover/underline:from-40% group-hover/underline:to-60%",
+          "w-6 from-20% to-80% group-hover/underline:w-full group-hover/underline:from-40% group-hover/underline:to-60%",
         className,
       )}
     />
@@ -34,8 +34,8 @@ export const Arrow = ({
   return (
     <svg
       className={cn(
-        "size-2 absolute top-[calc(100%-0.25rem)] z-41 left-1/2 -translate-x-1/2  motion-safe:transition-all duration-400 ease-out",
-        "group-hover/arrow:text-red-400 group-hover/arrow:translate-y-0.5 group-hover/arrow:size-3",
+        "absolute top-[calc(100%-0.25rem)] left-1/2 z-41 size-2 -translate-x-1/2 duration-400 ease-out motion-safe:transition-all",
+        "group-hover/arrow:size-3 group-hover/arrow:translate-y-0.5 group-hover/arrow:text-red-400",
         className,
       )}
       viewBox={viewBox}
