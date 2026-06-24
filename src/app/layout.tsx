@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 import localFont from "next/font/local";
 import { Navbar } from "@/components/layout/navbar";
-import { SearchPrefetch } from "@/components/layout/search-prefetch";
 import { cn } from "@/lib/utils";
 
 const dragonHunter = localFont({
@@ -32,7 +31,6 @@ export default ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <div className="mask-linear-to-black mask-linear-from-transparent pointer-events-none fixed top-0 right-0 left-0 z-43 h-32 backdrop-blur-3xl" />
         <div className="pointer-events-none fixed top-0 right-0 left-0 z-44 h-32 bg-linear-to-t from-transparent to-90% to-background" />
         <main className="container mx-auto p-4 text-muted-foreground">{children}</main>
-        <SearchPrefetch />
       </body>
     </html>
   );
