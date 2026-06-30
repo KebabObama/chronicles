@@ -242,3 +242,15 @@ export const ArmorClass = ({ children = "Armor Class" }: Props) => (
     successfully land.
   </T>
 );
+
+export const UnarmedDefense = ({ children = "Unarmed Defense" }: Props) => (
+  <T title={children}>When not wearing any medium or heavy armor, your armor class gains your Constitution modifier.</T>
+);
+
+export const DangerSense = ({ children = "Danger Sense" }: Props) => (
+  <T title={children}>You can use Strength modifier on Dexterity saving throws.</T>
+);
+
+export const RecklessAttack = ({ children = "Reckless Attack" }: Props) => (
+  <T title={children}></T>
+);

@@ -14,7 +14,7 @@ type LinkedUrl = {
 const LINKS: LinkedUrl[] = [
   { href: "/", label: "Home", Icon: GiCampingTent },
   { href: "/rules", label: "Rules", Icon: GiScales },
-  { href: "/classes", label: "Characters", Icon: GiPortrait },
+  { href: "/classes", label: "Classes", Icon: GiPortrait },
   { href: "/items", label: "Items", Icon: GiSwitchWeapon },
   { href: "/spells", label: "Abilities", Icon: GiMagicSwirl },
 ];

@@ -33,7 +33,7 @@ const components: MDXComponents = {
   ol: ({ children }) => <ol className="list-decimal space-y-2 pl-6">{children}</ol>,
   li: ({ children }) => <li className="leading-7">{children}</li>,
   table: ({ children }) => (
-    <table className="w-full border-2 border-border text-center tracking-wide">{children}</table>
+    <table className="border-2 border-border text-center tracking-wide">{children}</table>
   ),
   thead: ({ children }) => <thead className="bg-muted font-dragon-hunter font-extralight">{children}</thead>,
   tbody: ({ children }) => <tbody>{children}</tbody>,
